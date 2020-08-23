@@ -30,13 +30,16 @@
             text-transform: capitalize;
             font-family: english-font;
         }
-        .social ul{
+
+        .social ul {
             padding: 0;
             margin: 0;
-            li{
+
+            li {
                 list-style: none;
                 display: inline-block;
-                a{
+
+                a {
                     background: $primary-color;
                     padding: 5px 8px;
                     margin: 0px 3px;
