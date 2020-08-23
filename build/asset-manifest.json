@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e5469fa3.chunk.css",
+    "main.js": "/static/js/main.5189993d.chunk.js",
+    "main.js.map": "/static/js/main.5189993d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/css/2.49e80ef8.chunk.css": "/static/css/2.49e80ef8.chunk.css",
+    "static/js/2.c42736ec.chunk.js": "/static/js/2.c42736ec.chunk.js",
+    "static/js/2.c42736ec.chunk.js.map": "/static/js/2.c42736ec.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.3da3f4d92b4550c4efdde9d6d67b2549.js": "/precache-manifest.3da3f4d92b4550c4efdde9d6d67b2549.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.49e80ef8.chunk.css.map": "/static/css/2.49e80ef8.chunk.css.map",
+    "static/css/main.e5469fa3.chunk.css.map": "/static/css/main.e5469fa3.chunk.css.map",
+    "static/js/2.c42736ec.chunk.js.LICENSE.txt": "/static/js/2.c42736ec.chunk.js.LICENSE.txt",
+    "static/media/footer.scss": "/static/media/tohaborno.19adac8c.ttf",
+    "static/media/blog.png": "/static/media/blog.866f4dac.png",
+    "static/media/class-note.png": "/static/media/class-note.461b1872.png",
+    "static/media/header_bg.png": "/static/media/header_bg.16eefa01.png",
+    "static/media/header_bg_1.png": "/static/media/header_bg_1.1ef7a260.png",
+    "static/media/it-village-logo.png": "/static/media/it-village-logo.3dc51268.png",
+    "static/media/laptop.png": "/static/media/laptop.b3f6ef63.png",
+    "static/media/pc_mobile.png": "/static/media/pc_mobile.51c3b308.png",
+    "static/media/question-mark-1.png": "/static/media/question-mark-1.d1dc0e1f.png",
+    "static/media/question-mark-2.png": "/static/media/question-mark-2.f96359d3.png",
+    "static/media/question-mark-3.png": "/static/media/question-mark-3.62b34038.png",
+    "static/media/question-mark.png": "/static/media/question-mark.cd96c10b.png",
+    "static/media/question.png": "/static/media/question.9fa0a001.png",
+    "static/media/video-review.png": "/static/media/video-review.13d83028.png",
+    "static/media/workshop.png": "/static/media/workshop.f3499405.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09b85ec0.js",
+    "static/css/2.49e80ef8.chunk.css",
+    "static/js/2.c42736ec.chunk.js",
+    "static/css/main.e5469fa3.chunk.css",
+    "static/js/main.5189993d.chunk.js"
+  ]
+}

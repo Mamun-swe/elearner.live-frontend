@@ -1,0 +1,142 @@
+@import "../../App.scss";
+
+// Navbar
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: none;
+    transition: 0.3s all;
+
+    .title {
+        h2 {
+            color: #000;
+            font-family: 'Alata', sans-serif;
+
+            span {
+                color: $primary-color;
+            }
+        }
+    }
+
+    .menu-items {
+        @media (max-width: 992px) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            overflow-y: auto;
+            background: #fff;
+            z-index: 999;
+            padding: 20px 10px;
+            transition: 0.6s all;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+
+            ul {
+                padding: 0;
+                margin: 0;
+
+                li {
+                    list-style: none;
+
+                    a {
+                        display: block;
+                        padding: 5px 15px;
+                        font-size: 17px;
+                        font-family: primary-font;
+                        text-decoration: none;
+                        transition: 0.3s all;
+                        color: $primary-color;
+                        margin-bottom: 10px;
+                        border-radius: 5px;
+                    }
+
+                    .isActive {
+                        color: #fff;
+                        background: $primary-color;
+                        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+                    }
+                }
+            }
+        }
+
+        @media (min-width: 992px) {
+            ul {
+                padding: 0;
+                margin: 0;
+
+                li {
+                    list-style: none;
+                    float: left;
+
+                    a {
+                        padding: 5px 15px;
+                        margin: 0px 5px;
+                        font-size: 17px;
+                        font-family: primary-font;
+                        text-decoration: none;
+                        transition: 0.3s all;
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    .join {
+        .btn {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: primary-font;
+            background: $primary-color;
+            border: 1px solid $primary-color;
+        }
+    }
+
+    .toggle-btn {
+        padding: 6px !important;
+    }
+}
+
+.open-menu {
+    left: 0 !important;
+}
+
+.hide-menu {
+    left: -100% !important;
+}
+
+.scrolled {
+    background: #fff;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    position: fixed;
+    animation: moveDown 0.5s ease-in-out;
+}
+
+@keyframes moveDown {
+    from {
+        transform: translateY(-5rem);
+    }
+
+    to {
+        transform: translateY(0rem);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(360deg);
+    }
+
+    100% {
+        transform: rotateY(0rem);
+    }
+}
+
+// End Navbar

@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
+
+$primary-color: #fc5632;
+
+@font-face {
+    font-family: primary-font;
+    src: url("./assets/font/BenSenHandwriting.ttf");
+}
+
+@font-face {
+    font-family: secondary-font;
+    src: url("./assets/font/tohaborno.ttf");
+}
+
+@font-face {
+    font-family: english-font;
+    src: url("./assets/font/english.ttf");
+}
+
+.four_o_four {
+    text-align: center;
+
+    h1 {
+        color: salmon;
+    }
+}
+
+.App {
+    overflow-x: hidden;
+}
