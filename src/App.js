@@ -12,6 +12,8 @@ import TermsCondition from './Pages/Terms/Index';
 import Team from './Pages/Team/Index';
 import FourOFourPage from './Pages/fourOfour/Index';
 
+import ScrollToTop from './Components/ScrollToTop';
+
 function App() {
 
   useEffect(() => {
@@ -21,14 +23,16 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/help-line" component={HelpLine} />
-          <Route exact path="/privacy-policy" component={PrivacyPolicy} />
-          <Route exact path="/terms-conditions" component={TermsCondition} />
-          <Route exact path="/who-we-are" component={Team} />
-          <Route path="*" component={FourOFourPage} />
-        </Switch>
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/help-line" component={HelpLine} />
+            <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+            <Route exact path="/terms-conditions" component={TermsCondition} />
+            <Route exact path="/who-we-are" component={Team} />
+            <Route path="*" component={FourOFourPage} />
+          </Switch>
+        </ScrollToTop>
       </Router>
     </div>
   );

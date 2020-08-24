@@ -19,4 +19,56 @@
             }
         }
     }
+
+    .container {
+        .team-column {
+            padding: 25px 20px;
+
+            @media (min-width: 992px) {
+                padding: 30px;
+            }
+
+            .team-card {
+                height: 300px;
+                border-radius: 16px;
+                overflow: hidden;
+                border: 0;
+                transition: 0.3s;
+                text-align: center;
+                border: 1px solid #dfdfdf38;
+                box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+
+                .card-body {
+                    padding-top: 35px;
+                    padding-bottom: 35px;
+
+                    .img-box {
+                        width: 130px;
+                        height: 130px;
+                        overflow: hidden;
+                        margin: auto;
+
+                        img {
+                            min-width: 100%;
+                            min-height: 100%;
+                        }
+                    }
+
+                    .content {
+                        h5 {
+                            font-family: Barlow-Medium;
+                        }
+
+                        p {
+                            font-family: Barlow-Regular;
+                        }
+                    }
+                }
+            }
+
+            .team-card:hover {
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+            }
+        }
+    }
 }
