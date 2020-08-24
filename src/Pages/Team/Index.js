@@ -39,7 +39,7 @@ const Index = () => {
                                 </div>
                                 <div className="content mt-4">
                                     <h5 className="mb-0 text-capitalize">moniruzzaman roni</h5>
-                                    <p className="mb-0 text-capitalize">back-end developer</p>
+                                    <p className="mb-0 text-capitalize">back-end engineer</p>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@ const Index = () => {
                                 </div>
                                 <div className="content mt-4">
                                     <h5 className="mb-0 text-capitalize">muhtasim shakil</h5>
-                                    <p className="mb-0 text-capitalize">UI/UX designer</p>
+                                    <p className="mb-0 text-capitalize">UI/UX engineer</p>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ const Index = () => {
                                 </div>
                                 <div className="content mt-4">
                                     <h5 className="mb-0 text-capitalize">abdullah al mamun</h5>
-                                    <p className="mb-0 text-capitalize">front-end developer</p>
+                                    <p className="mb-0 text-capitalize">front-end engineer</p>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@ const Index = () => {
                                 </div>
                                 <div className="content mt-4">
                                     <h5 className="mb-0 text-capitalize">mahidul moon</h5>
-                                    <p className="mb-0 text-capitalize">back-end developer</p>
+                                    <p className="mb-0 text-capitalize">back-end engineer</p>
                                 </div>
                             </div>
                         </div>
