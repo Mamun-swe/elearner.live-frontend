@@ -24,9 +24,10 @@ const Footer = () => {
                     <div className="col-12 col-lg-3 mt-5 mt-lg-0 text-center text-lg-left">
                         <h4 className="mb-4">Need Help?</h4>
                         <Link to="/">support</Link>
-                        <Link to="/">helpline</Link>
+                        <Link to="/help-line">helpline</Link>
                         <Link to="/privacy-policy">privacy & policy</Link>
                         <Link to="/terms-conditions">terms & conditions</Link>
+                        <Link to="/who-we-are">Who we are ?</Link>
                     </div>
                     <div className="col-12 col-lg-3 mt-5 mt-lg-0 text-center text-lg-left">
                         <h4 className="mb-4">Contacts</h4>

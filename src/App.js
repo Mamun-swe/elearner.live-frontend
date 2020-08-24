@@ -6,8 +6,10 @@ import 'aos/dist/aos.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import HomePage from './Pages/Home/Index';
+import HelpLine from './Pages/HelpLine/Index';
 import PrivacyPolicy from './Pages/PrivacyPolicy/Index';
 import TermsCondition from './Pages/Terms/Index';
+import Team from './Pages/Team/Index';
 import FourOFourPage from './Pages/fourOfour/Index';
 
 function App() {
@@ -21,8 +23,10 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/help-line" component={HelpLine} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/terms-conditions" component={TermsCondition} />
+          <Route exact path="/who-we-are" component={Team} />
           <Route path="*" component={FourOFourPage} />
         </Switch>
       </Router>
