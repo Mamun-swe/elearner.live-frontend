@@ -1,0 +1,28 @@
+@import "../../App.scss";
+
+.privacy-policy-terms {
+    margin-top: 70px;
+
+    .container {
+        h4 {
+            color: rgb(18, 16, 95);
+            font-family: Barlow-Bold;
+
+            span {
+                color: $primary-color;
+            }
+        }
+
+        p {
+            color: #696969;
+            font-size: 1em;
+            line-height: 1.8rem;
+            font-family: Barlow-Medium;
+        }
+        h6{
+            color: rgb(18, 16, 95);
+            font-size: 1em;
+            font-family: Barlow-Bold;
+        }
+    }
+}

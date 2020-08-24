@@ -4,10 +4,11 @@ import { NavLink, Link } from 'react-router-dom';
 import { Icon } from 'react-icons-kit';
 import { ic_dehaze, ic_close } from 'react-icons-kit/md';
 
+import Logo from '../assets/static/logo.png';
+
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(true);
-
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -27,7 +28,9 @@ const NavBar = () => {
                     <div className="col-12">
                         <div className="d-flex justify-content-between">
                             <div className="title">
-                                <h2 className="mb-0"><span>eLearner</span>.Live</h2>
+                                <Link to="/">
+                                    <img src={Logo} className="img-fluid" alt="logo" />
+                                </Link>
                             </div>
 
                             {/* Page Links */}

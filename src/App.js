@@ -6,6 +6,8 @@ import 'aos/dist/aos.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import HomePage from './Pages/Home/Index';
+import PrivacyPolicy from './Pages/PrivacyPolicy/Index';
+import TermsCondition from './Pages/Terms/Index';
 import FourOFourPage from './Pages/fourOfour/Index';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+          <Route exact path="/terms-conditions" component={TermsCondition} />
           <Route path="*" component={FourOFourPage} />
         </Switch>
       </Router>

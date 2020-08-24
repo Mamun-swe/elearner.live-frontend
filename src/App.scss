@@ -17,6 +17,21 @@ $primary-color: #fc5632;
     src: url("./assets/font/english.ttf");
 }
 
+@font-face {
+    font-family: Barlow-Regular;
+    src: url("./assets/font/Barlow/Barlow-Regular.ttf");
+}
+
+@font-face {
+    font-family: Barlow-Medium;
+    src: url("./assets/font/Barlow/Barlow-Medium.ttf");
+}
+
+@font-face {
+    font-family: Barlow-Bold;
+    src: url("./assets/font/Barlow/Barlow-Bold.ttf");
+}
+
 .four_o_four {
     text-align: center;
 

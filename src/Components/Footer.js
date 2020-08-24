@@ -23,11 +23,10 @@ const Footer = () => {
                     </div>
                     <div className="col-12 col-lg-3 mt-5 mt-lg-0 text-center text-lg-left">
                         <h4 className="mb-4">Need Help?</h4>
-                        <Link to="/">privacy</Link>
-                        <Link to="/">policy</Link>
                         <Link to="/">support</Link>
-                        <Link to="/">terms</Link>
                         <Link to="/">helpline</Link>
+                        <Link to="/privacy-policy">privacy & policy</Link>
+                        <Link to="/terms-conditions">terms & conditions</Link>
                     </div>
                     <div className="col-12 col-lg-3 mt-5 mt-lg-0 text-center text-lg-left">
                         <h4 className="mb-4">Contacts</h4>
