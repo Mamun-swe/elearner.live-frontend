@@ -1,9 +1,13 @@
 import React from 'react';
 import '../../Components/styles/privacy-policy-terms.scss';
+import NavBar from '../../Components/NavBar';
+import Footer from '../../Components/Footer';
 
 const Index = () => {
     return (
         <div className="privacy-policy-terms">
+            <NavBar />
+
             <div className="container py-5">
                 <div className="row">
                     <div className="col-12 col-lg-9 m-auto">
@@ -59,6 +63,8 @@ const Index = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </div>
     );
 };
