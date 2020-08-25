@@ -27,8 +27,7 @@
         }
 
         .links {
-            width: 250px;
-            margin: auto;
+            width: 100%;
 
             .btn {
                 color: #fff;
@@ -43,6 +42,7 @@
             }
 
             @media (min-width: 576px) {
+                margin: auto;
                 width: 300px;
             }
         }
@@ -62,3 +62,93 @@
 }
 
 // Auth
+.auth {
+    margin-top: 100px;
+
+    .card {
+        padding: 30px;
+        border-radius: 16px;
+        border: 1px solid #fc573269;
+        border-style: dotted;
+        text-align: center;
+        position: relative;
+        margin: auto;
+
+        img {
+            width: 150px;
+            margin: auto;
+
+            @media (min-width: 576px) {
+                width: 180px;
+            }
+        }
+
+        .reg-img {
+            position: absolute;
+            top: -30px;
+            left: -50px;
+
+            @media (min-width: 992px) {
+                width: 250px;
+            }
+        }
+
+        h4 {
+            color: $primary-color;
+            font-family: primary-font;
+            margin-bottom: 30px;
+        }
+
+        form {
+            width: 100%;
+
+            small {
+                font-size: 14px;
+                color: $primary-color;
+                font-family: secondary-font;
+            }
+
+            .form-control {
+                font-size: 14px;
+                height: 40px;
+                font-family: Barlow-Regular;
+                border: 1px solid #dfdfdf;
+                border-radius: 6px;
+            }
+
+            .form-control:focus {
+                border: 1px solid $primary-color;
+            }
+
+            .btn {
+                color: #fff;
+                font-family: primary-font;
+                background: $primary-color;
+                border-radius: 6px;
+            }
+
+            a {
+                font-size: 14px;
+                color: $primary-color;
+                font-family: secondary-font;
+            }
+
+            @media (min-width: 576px) {
+                margin: auto;
+                width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            width: 90vw;
+        }
+
+        @media (min-width: 768px) {
+            width: 730px;
+        }
+
+        @media (min-width: 992px) {
+            width: 800px;
+        }
+    }
+}
