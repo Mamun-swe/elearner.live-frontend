@@ -13,7 +13,9 @@ import TermsCondition from './Pages/Terms/Index';
 import Team from './Pages/Team/Index';
 
 import AuthLayout from './Pages/Auth/Layout';
+import RegisterPage from './Pages/Auth/Register';
 import LoginPage from './Pages/Auth/Login';
+import ResetPage from './Pages/Auth/Reset';
 
 import Footer from './Components/Footer';
 import FourOFourPage from './Pages/fourOfour/Index';
@@ -39,7 +41,9 @@ function App() {
             <Route exact path="/who-we-are" component={Team} />
 
             <Route exact path="/join" component={AuthLayout} />
+            <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/reset" component={ResetPage} />
 
             <Route path="*" component={FourOFourPage} />
           </Switch>
