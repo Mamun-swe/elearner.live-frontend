@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Navbar from '../../Components/NavBar';
 import Header from "../../Components/HomePage/Header";
 import Courses from '../../Components/HomePage/Courses';
 import Blog from '../../Components/HomePage/Blog';
@@ -10,7 +9,6 @@ import ClassNote from '../../Components/HomePage/ClassNote';
 import VideoReview from '../../Components/HomePage/VideoReview';
 import CourseBenifite from '../../Components/HomePage/CourseBenifite';
 import Reviews from '../../Components/HomePage/Reviews';
-import Footer from '../../Components/Footer';
 
 
 const Index = () => {
@@ -27,7 +25,7 @@ const Index = () => {
 
     return (
         <div className="home">
-            <Navbar />
+            {/* <Navbar /> */}
             <Header />
             <Courses courses={courses} />
             <Blog />
@@ -36,7 +34,7 @@ const Index = () => {
             <VideoReview />
             <CourseBenifite />
             <Reviews reviews={courses} />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 };

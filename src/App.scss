@@ -32,14 +32,48 @@ $primary-color: #fc5632;
     src: url("./assets/font/Barlow/Barlow-Bold.ttf");
 }
 
+.App {
+    overflow-x: hidden;
+}
+
 .four_o_four {
+    width: 100%;
+    padding-top: 200px;
+    padding-bottom: 100px;
     text-align: center;
 
-    h1 {
-        color: salmon;
+    img {
+        width: 250px;
+
+        @media (min-width: 992px) {
+            width: 400px;
+        }
+    }
+
+    h3 {
+        color: $primary-color;
+        font-family: Barlow-Bold;
     }
 }
 
-.App {
-    overflow-x: hidden;
+/* Flex Center Box */
+
+.flex-center {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+}
+
+.flex-column {
+    -ms-flex-direction: column !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+    flex-direction: column !important;
 }

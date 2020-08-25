@@ -2,8 +2,6 @@ import React from 'react';
 import '../../Components/styles/help-line.scss';
 import { useForm } from "react-hook-form";
 
-import NavBar from '../../Components/NavBar';
-import Footer from '../../Components/Footer';
 
 import ManTypingImg from '../../assets/static/man_typing_message.png';
 import TextBoxImg1 from '../../assets/static/text_box_1.png';
@@ -17,7 +15,6 @@ const Index = () => {
 
     return (
         <div className="help-line">
-            <NavBar />
 
             <div className="header">
                 <div className="container">
@@ -156,8 +153,6 @@ const Index = () => {
                 </div>
             </div>
 
-
-            <Footer />
         </div>
     );
 };

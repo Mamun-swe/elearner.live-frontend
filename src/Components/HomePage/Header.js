@@ -40,7 +40,7 @@ const Header = () => {
                         </div>
 
                         <div className="text-center join-btn-box">
-                            <Link to="/" type="button" className="btn shadow px-4">জয়েন করুন</Link>
+                            <Link to="/join" type="button" className="btn shadow px-4">জয়েন করুন</Link>
                         </div>
 
                     </div>
