@@ -15,7 +15,7 @@ const Layout = () => {
         const fetchCourses = () => {
             axios.get('https://jsonplaceholder.typicode.com/users')
                 .then(res => {
-                    setCourses(res.data)
+                    setCourses(res.data.slice(0, 6))
                 })
         }
         fetchCourses()
@@ -94,8 +94,6 @@ const Layout = () => {
                             </div>
                         </Link>
                     )}
-
-
                 </div>
             </div>
 
