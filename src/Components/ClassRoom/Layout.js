@@ -70,14 +70,15 @@ const Layout = () => {
                     </div>
 
                     {courses.map((course, i) =>
-                        <NavLink
-                            activeClassName="isActive"
-                            to={`/classroom/${course.id}`}
-                            type="button"
-                            className="btn shadow-none"
-                        >
-                            {course.name.slice(0, 5)}
-                        </NavLink>
+                            <NavLink
+                                activeClassName="isActive"
+                                to={`/classroom/${course.id}`}
+                                type="button"
+                                className="btn shadow-none"
+                                key={i}
+                            >
+                                {course.name.slice(0, 5)}
+                            </NavLink>
                     )}
                 </div>
 
@@ -90,9 +91,9 @@ const Layout = () => {
                         <h5 className="mb-0">জনপ্রিয় কোর্সগুলো</h5>
                     </div>
 
-                    {courses && courses.map((course, i) =>
+                    {courses && courses.map((course, k) =>
                         <Link to={`/classroom/course/${course.id}`} >
-                            <div className="course-card border-0" key={i}>
+                            <div className="course-card border-0" key={k}>
                                 <div className="card-body shadow-sm text-center">
                                     <img src={DesktopImg} className="img-fluid" alt="..." />
                                     <p className="mb-0">অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>

@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import PageLoading from '../../Components/Loading';
 
-import CourseImg from '../../assets/courses/Bangla_Goddo.png';
+import CourseImg from '../../assets/courses/react.jpg';
 
 const CourseShow = () => {
     const [courses, setCourses] = useState([])
@@ -30,29 +30,42 @@ const CourseShow = () => {
             {loading ? (
                 <PageLoading />
             ) :
-                <div className="p-3" data-aos="fade-zoom">
+                <div className="p-3 pb-5" data-aos="fade-zoom">
                     <div className="title mb-2">
                         <h4 className="mb-0 ml-2">ওয়েব ডিজাইন</h4>
                     </div>
 
-                    <div className="card shadow-sm">
-                        <div className="card-body">
-                            {courses.length > 0 && courses.map((course, i) =>
 
-                                <Link to={`/classroom/course/${course.id}`} key={i}>
-                                    <div className="course-box">
+                    {courses.length > 0 && courses.map((course, i) =>
+                        <Link to={`/classroom/course/${course.id}`} key={i}>
+                            <div className="card">
+                                <div className="box">
+                                    <div className="card-header">
                                         <img src={CourseImg} className="img-fluid" alt="..." />
-                                        <p className="text-muted">ওয়েব ডিজাইন</p>
                                     </div>
-                                </Link>
 
-                            )}
-                        </div>
-                    </div>
+                                    <div className="card-body">
+                                        <div className="text">
+                                            <p className="text-muted">React দিয়ে ওয়েব ডিজাইন: Project from scratch</p>
+                                            <h6 className="text-muted mb-0">
+                                                <del>$4500</del> <span className="ml-2">$4000</span>
+                                            </h6>
+                                        </div>
+                                        <div className="overlay">
+                                            <p className="mb-0">With abdullah al mamun</p>
+                                            <div className="enroll text-center">
+                                                <p className="mb-0">Enroll Course</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Link>
+                    )}
 
                 </div>
             }
-        </div>
+        </div >
     );
 };
 
