@@ -76,7 +76,7 @@ const SingleCourse = () => {
                             <div className="ml-auto pt-3 pt-md-0">
                                 <button
                                     type="button"
-                                    className="btn shadow-none"
+                                    className="btn shadow-none mt-md-1"
                                 >Free Registration</button>
                             </div>
                         </div>
