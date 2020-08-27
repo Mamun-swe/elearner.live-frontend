@@ -76,7 +76,7 @@ const Layout = () => {
                             type="button"
                             className="btn shadow-none"
                         >
-                            {course.name.slice(0,5)}
+                            {course.name.slice(0, 5)}
                         </NavLink>
                     )}
                 </div>
@@ -91,7 +91,7 @@ const Layout = () => {
                     </div>
 
                     {courses && courses.map((course, i) =>
-                        <Link to={`/classroom/${course.id}`} >
+                        <Link to={`/classroom/course/${course.id}`} >
                             <div className="course-card border-0" key={i}>
                                 <div className="card-body shadow-sm text-center">
                                     <img src={DesktopImg} className="img-fluid" alt="..." />
