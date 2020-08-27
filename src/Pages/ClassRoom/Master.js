@@ -1,46 +1,18 @@
 import React from 'react';
 import '../../Components/styles/class-room-layout.scss';
 import Layot from '../../Components/ClassRoom/Layout';
+import { Route } from 'react-router-dom';
+
+import CourseShow from '../ClassRoom/CourseShow';
+import SingleCourse from '../ClassRoom/SingleCourse';
 
 const Master = () => {
     return (
         <div className="account-master">
             <Layot />
             <div className="main">
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
-                <h1>Class room Master</h1>
+                <Route exact path="/classroom/:section" component={CourseShow} />
+                <Route exact path="/classroom/course/:courseId" component={SingleCourse} />
             </div>
         </div>
     );

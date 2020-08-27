@@ -62,17 +62,23 @@ const Layout = () => {
 
 
             {/* Left Menu */}
-            <div className="left-menu">
+            <div className="left-menu d-none d-lg-block">
 
                 <div className="links-menu my-3">
-                    <div className="title text-lg-center mb-2 mb-lg-3 mt-2">
+                    <div className="title text-lg-center pb-2 mb-2 mt-2 border-bottom">
                         <h5 className="mb-0">সেকশন</h5>
                     </div>
-                    <NavLink activeClassName="isActive" to="/classroom" type="button" className="btn shadow-none">সেকশন নাম</NavLink>
-                    <NavLink activeClassName="isActive" to="/classroom/df" type="button" className="btn shadow-none">সেকশন নাম</NavLink>
-                    <NavLink activeClassName="isActive" to="/classroom/fd" type="button" className="btn shadow-none">সেকশন নাম</NavLink>
-                    <NavLink activeClassName="isActive" to="/classroom/df" type="button" className="btn shadow-none">সেকশন নাম</NavLink>
-                    <NavLink activeClassName="isActive" to="/classroom/df" type="button" className="btn shadow-none">সেকশন নাম</NavLink>
+
+                    {courses.map((course, i) =>
+                        <NavLink
+                            activeClassName="isActive"
+                            to={`/classroom/${course.id}`}
+                            type="button"
+                            className="btn shadow-none"
+                        >
+                            {course.name.slice(0,5)}
+                        </NavLink>
+                    )}
                 </div>
 
             </div>
@@ -85,7 +91,7 @@ const Layout = () => {
                     </div>
 
                     {courses && courses.map((course, i) =>
-                        <Link to="/classroom" >
+                        <Link to={`/classroom/${course.id}`} >
                             <div className="course-card border-0" key={i}>
                                 <div className="card-body shadow-sm text-center">
                                     <img src={DesktopImg} className="img-fluid" alt="..." />
