@@ -33,7 +33,7 @@ const SingleCourse = () => {
     return (
         <div className="single-course p-3">
             {loading ? (<Loader />) :
-                <div>
+                <div data-aos="fade-zoom">
                     <div className="title-bar border-bottom pb-2 mb-3">
                         <div className="d-flex">
                             <div className="pr-2">

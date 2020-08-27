@@ -246,69 +246,75 @@
         border: 1px solid #dfdfdf59;
 
         .card-body {
-            .course-box {
-                width: 50%;
-                float: left;
-                margin-bottom: 20px;
+            a {
+                .course-box {
+                    width: 50%;
+                    float: left;
+                    margin-bottom: 20px;
 
-                img {
-                    width: 50px;
+                    img {
+                        width: 50px;
+                        transition: 0.2s all;
+                    }
+
+                    p {
+                        margin: 5px 0px;
+                        font-size: 13px;
+                        font-family: secondary-font;
+                    }
+
+                    @media (min-width: 400px) {
+                        width: 33.33%;
+                        padding: 10px;
+                    }
+
+                    @media (min-width: 500px) {
+                        width: 25%;
+                    }
+
+                    @media (min-width: 650px) {
+                        width: 20%;
+                    }
+
+                    @media (min-width: 700px) {
+                        width: 16.66%;
+                    }
+
+                    @media (min-width: 900px) {
+                        width: 14.28%;
+                    }
+
+                    @media (min-width: 992px) {
+                        width: 33.33%;
+                    }
+
+                    @media (min-width: 1050px) {
+                        width: 25%;
+                    }
+
+                    @media (min-width: 1150px) {
+                        width: 20%;
+                    }
+
+                    @media (min-width: 1250px) {
+                        width: 16.66%;
+                    }
+
+                    // @media (min-width: 1350px) {
+                    //     width: 12.5%;
+                    // }
+
+                    @media (min-width: 1450px) {
+                        width: 11.11%;
+                    }
+
+                    @media (min-width: 1550px) {
+                        width: 10%;
+                    }
                 }
-
-                p {
-                    margin: 5px 0px;
-                    font-size: 13px;
-                    font-family: secondary-font;
-                }
-
-                @media (min-width: 400px) {
-                    width: 33.33%;
-                    padding: 10px;
-                }
-
-                @media (min-width: 500px) {
-                    width: 25%;
-                }
-
-                @media (min-width: 650px) {
-                    width: 20%;
-                }
-
-                @media (min-width: 700px) {
-                    width: 16.66%;
-                }
-
-                @media (min-width: 900px) {
-                    width: 14.28%;
-                }
-
-                @media (min-width: 992px) {
-                    width: 33.33%;
-                }
-
-                @media (min-width: 1050px) {
-                    width: 25%;
-                }
-
-                @media (min-width: 1150px) {
-                    width: 20%;
-                }
-
-                @media (min-width: 1250px) {
-                    width: 16.66%;
-                }
-
-                // @media (min-width: 1350px) {
-                //     width: 12.5%;
-                // }
-
-                @media (min-width: 1450px) {
-                    width: 11.11%;
-                }
-
-                @media (min-width: 1550px) {
-                    width: 10%;
-                }
+            }
+            a:hover img{
+                transform: scale(1.2);
             }
         }
     }

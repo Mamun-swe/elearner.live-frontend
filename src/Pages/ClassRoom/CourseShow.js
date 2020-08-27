@@ -18,7 +18,7 @@ const CourseShow = () => {
             axios.get(`https://jsonplaceholder.typicode.com/posts`)
                 .then(res => {
 
-                    setCourses(res.data.slice(0,15));
+                    setCourses(res.data.slice(0, 15));
                     setLoading(false)
                 })
         }
@@ -30,7 +30,7 @@ const CourseShow = () => {
             {loading ? (
                 <PageLoading />
             ) :
-                <div className="p-3">
+                <div className="p-3" data-aos="fade-zoom">
                     <div className="title mb-2">
                         <h4 className="mb-0 ml-2">ওয়েব ডিজাইন</h4>
                     </div>
@@ -43,10 +43,6 @@ const CourseShow = () => {
                                     <div className="course-box">
                                         <img src={CourseImg} className="img-fluid" alt="..." />
                                         <p className="text-muted">ওয়েব ডিজাইন</p>
-                                        {/* <Link to={`/classroom/course/${course.id}`}
-                                        type="button"
-                                        className="btn btn-sm shadow-none"
-                                    >এখানে ক্লিক করুন</Link> */}
                                     </div>
                                 </Link>
 
