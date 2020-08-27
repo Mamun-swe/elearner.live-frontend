@@ -27,7 +27,9 @@ const Layout = () => {
             <div className="nav-bar p-0">
                 <div className="d-flex">
                     <div className="logo-section">
-                        <img src={Logo} className="img-fluid" alt="..." />
+                        <Link to="/">
+                            <img src={Logo} className="img-fluid" alt="..." />
+                        </Link>
                     </div>
 
                     {/* Desktop Search */}
@@ -70,15 +72,15 @@ const Layout = () => {
                     </div>
 
                     {courses.map((course, i) =>
-                            <NavLink
-                                activeClassName="isActive"
-                                to={`/classroom/${course.id}`}
-                                type="button"
-                                className="btn shadow-none"
-                                key={i}
-                            >
-                                {course.name.slice(0, 5)}
-                            </NavLink>
+                        <NavLink
+                            activeClassName="isActive"
+                            to={`/classroom/${course.id}`}
+                            type="button"
+                            className="btn shadow-none"
+                            key={i}
+                        >
+                            {course.name.slice(0, 5)}
+                        </NavLink>
                     )}
                 </div>
 
