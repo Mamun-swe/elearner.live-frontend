@@ -5,12 +5,16 @@ import { Icon } from 'react-icons-kit';
 import { ic_keyboard_backspace } from 'react-icons-kit/md/ic_keyboard_backspace';
 import axios from 'axios';
 import Collapse from 'react-bootstrap/Collapse';
+import { useDispatch } from 'react-redux';
+import { addCourse } from '../../Redux/Actions/coursesAction';
+
 import Loader from '../../Components/Loading';
 
 
 const SingleCourse = () => {
     let { courseId } = useParams();
     const history = useHistory();
+    const dispatch = useDispatch();
     const [course, setCourse] = useState({});
     const [loading, setLoading] = useState(false);
     const [open1, setOpen1] = useState(false);
@@ -33,11 +37,36 @@ const SingleCourse = () => {
         fetchCourse()
     }, [courseId])
 
-
-
     const goBackPrevious = () => {
         history.goBack();
     }
+
+    const fakeUser = {
+        "id": 11,
+        "name": "Mamun",
+        "username": "Bret",
+        "email": "Sincere@april.biz",
+        "address": {
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {
+                "lat": "-37.3159",
+                "lng": "81.1496"
+            }
+        },
+        "phone": "1-770-736-8031 x56442",
+        "website": "hildegard.org",
+        "company": {
+            "name": "Romaguera-Crona",
+            "catchPhrase": "Multi-layered client-server neural-net",
+            "bs": "harness real-time e-markets"
+        }
+    }
+
+
+
     return (
         <div className="single-course p-3">
             {loading ? (<Loader />) :
@@ -77,6 +106,8 @@ const SingleCourse = () => {
                                 <button
                                     type="button"
                                     className="btn shadow-none mt-md-1"
+                                    onClick={() => dispatch(addCourse(5))}
+                                    // onClick={() => console.log(fakeUser)}
                                 >Free Registration</button>
                             </div>
                         </div>

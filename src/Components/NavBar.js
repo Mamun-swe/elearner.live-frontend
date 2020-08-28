@@ -19,7 +19,7 @@ const NavBar = () => {
                 setScrolled(true);
             }
         })
-    }, [])
+    })
 
     return (
         <div className={scrolled ? "nav-bar" : "nav-bar scrolled"}>
