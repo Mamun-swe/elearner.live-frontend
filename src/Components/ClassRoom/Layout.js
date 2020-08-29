@@ -14,8 +14,7 @@ const Layout = () => {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false)
     const [popularCourses, setPopularCourses] = useState([])
-    const { loading, courses, error } = useSelector((state => state.courses))
-    // const { count } = useSelector((state => state.count))
+    const { loading, courses } = useSelector((state => state.courses))
 
     useEffect(() => {
         dispatch(coursesList());
@@ -24,16 +23,14 @@ const Layout = () => {
             axios.get('https://jsonplaceholder.typicode.com/users')
                 .then(res => {
                     setPopularCourses(res.data.slice(0, 6))
-                    console.log(res.data)
                 })
         }
         fetchCourses()
     }, [dispatch])
 
-    // const count = useSelector(state => state.counterReducer.count)
-
     return (
         <div className="class-room-layout">
+
             {/* Navbar */}
             <div className="nav-bar p-0">
                 <div className="d-flex">
@@ -113,19 +110,37 @@ const Layout = () => {
                 {localStorage.getItem("token") ? (
                     <div className="my-courses">
                         <div className="title text-lg-center mb-2 mb-lg-3 mt-2">
-                            <h5 className="mb-0">আমার কোর্সগুলো</h5>
+                            <h5 className="mb-0">আমার কোর্সগুলো {courses.length}</h5>
                         </div>
 
-                        {courses && courses.map((course, k) =>
-                            <Link to={`/classroom/course/${course.id}`} >
-                                <div className="course-card border-0" key={k}>
-                                    <div className="card-body shadow-sm text-center">
-                                        <img src={DesktopImg} className="img-fluid" alt="..." />
-                                        <p className="mb-0">অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
-                                    </div>
-                                </div>
-                            </Link>
-                        )}
+                        {
+                            loading ? (
+                                <p>Loading ...</p>
+                            ) : (
+                                    courses.length > 0 ? (
+                                        <div>
+                                            {courses.map((course, k) =>
+                                                <Link to={`/classroom/course/${course.id}`} >
+                                                    <div className="course-card border-0" key={k}>
+                                                        <div className="card-body shadow-sm text-center">
+                                                            <img src={DesktopImg} className="img-fluid" alt="..." />
+                                                            <p className="mb-0">অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            )}
+                                            <div className="text-center">
+                                                <Link
+                                                    to="/"
+                                                    type="button"
+                                                    className="btn px-4 shadow-none payment-btn"
+                                                >Payment</Link>
+                                            </div>
+                                        </div>
+                                    ) : null
+                                )
+
+                        }
                     </div>
                 ) :
 

@@ -2,9 +2,8 @@ import {
     COURSE_REQUEST,
     GET_COURSE_SUCCESS,
     GET_COURSE_FAILED,
-    ADD_COURSE,
-    ADD_COURSE_SUCCESS,
-    ADD_COURSE_FAILED
+    COURSE_ADD,
+    COURSE_ADD_FAILED
 } from '../types';
 
 import axios from 'axios';
@@ -29,8 +28,14 @@ export const coursesList = () => {
 }
 
 export const addCourse = (data) => {
-    return {
-        type: ADD_COURSE,
-        payload: data
+    return async (dispatch) => {
+        try {
+            dispatch({ type: COURSE_ADD, payload: data })
+        } catch (error) {
+            dispatch({
+                type: COURSE_ADD_FAILED,
+                payload: error.message
+            })
+        }
     }
 }

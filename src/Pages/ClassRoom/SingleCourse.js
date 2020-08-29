@@ -5,12 +5,14 @@ import { Icon } from 'react-icons-kit';
 import { ic_keyboard_backspace } from 'react-icons-kit/md/ic_keyboard_backspace';
 import axios from 'axios';
 import Collapse from 'react-bootstrap/Collapse';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCourse } from '../../Redux/Actions/coursesAction';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Loader from '../../Components/Loading';
 
-
+toast.configure({ autoClose: 2000 })
 const SingleCourse = () => {
     let { courseId } = useParams();
     const history = useHistory();
@@ -23,7 +25,9 @@ const SingleCourse = () => {
     const [open4, setOpen4] = useState(false);
     const [open5, setOpen5] = useState(false);
     const [open6, setOpen6] = useState(false);
+    const { success, success_failed } = useSelector((state => state.courses))
 
+    // console.log(success);
 
     useEffect(() => {
         const fetchCourse = () => {
@@ -42,7 +46,7 @@ const SingleCourse = () => {
     }
 
     const fakeUser = {
-        "id": 11,
+        "id": 15,
         "name": "Mamun",
         "username": "Bret",
         "email": "Sincere@april.biz",
@@ -66,11 +70,44 @@ const SingleCourse = () => {
     }
 
 
+    const submitCourse = async () => {
+        try {
+            await dispatch(addCourse(fakeUser))
+
+            if (success) {
+                // console.log(success);
+                toast.success('Successfully added')
+            }
+
+            if (success_failed) {
+                // console.log(success_failed);
+                toast.warn('This course already added')
+            }
+        } catch (error) {
+
+        }
+
+    }
+
+
 
     return (
         <div className="single-course p-3">
+            {/* {
+                success ?
+                    toast.success('Successfully added')
+                    : null}
+
+            {success_failed ?
+                toast.warn('failed to add')
+                : null
+            } */}
+
             {loading ? (<Loader />) :
-                <div data-aos="fade-zoom">
+
+
+
+                <div data-aos="fade-zoom" className="px-lg-5">
                     <div className="title-bar border-bottom pb-2 mb-3">
                         <div className="d-flex">
                             <div className="pr-2">
@@ -90,7 +127,7 @@ const SingleCourse = () => {
 
                     <div className="content">
 
-                        <div className="embed-responsive embed-responsive-16by9 mb-4">
+                        <div className="embed-responsive embed-responsive-21by9 mb-4">
                             <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="..." allowFullScreen></iframe>
                         </div>
 
@@ -106,8 +143,7 @@ const SingleCourse = () => {
                                 <button
                                     type="button"
                                     className="btn shadow-none mt-md-1"
-                                    onClick={() => dispatch(addCourse(5))}
-                                    // onClick={() => console.log(fakeUser)}
+                                    onClick={submitCourse}
                                 >Free Registration</button>
                             </div>
                         </div>
