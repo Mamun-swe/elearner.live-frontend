@@ -182,7 +182,7 @@
         padding-top: 75px;
         padding-left: 10px;
         padding-right: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 80px;
         overflow-y: auto;
 
         // Favourite Courses
@@ -223,13 +223,21 @@
                     }
                 }
 
-                .payment-btn {
-                    color: #fff;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
-                    font-size: 16px;
-                    background: $primary-color;
-                    font-family: Barlow-Medium;
+                .payment-box {
+                    position: fixed;
+                    right: 0;
+                    bottom: 0;
+                    width: 300px;
+                    background: #fff;
+
+                    .payment-btn {
+                        color: #fff;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        font-size: 16px;
+                        background: $primary-color;
+                        font-family: Barlow-Medium;
+                    }
                 }
             }
         }

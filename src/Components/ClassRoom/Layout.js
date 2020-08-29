@@ -129,7 +129,7 @@ const Layout = () => {
                                                     </div>
                                                 </Link>
                                             )}
-                                            <div className="text-center">
+                                            <div className="text-center payment-box">
                                                 <Link
                                                     to="/"
                                                     type="button"
