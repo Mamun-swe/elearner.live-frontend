@@ -35,7 +35,6 @@ const CourseShow = () => {
                         <h4 className="mb-0 ml-2">ওয়েব ডিজাইন</h4>
                     </div>
 
-
                     {courses.length > 0 && courses.map((course, i) =>
                         <Link to={`/classroom/course/${course.id}`} key={i}>
                             <div className="card">
@@ -62,7 +61,6 @@ const CourseShow = () => {
                             </div>
                         </Link>
                     )}
-
                 </div>
             }
         </div >

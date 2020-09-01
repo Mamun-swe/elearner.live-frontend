@@ -9,6 +9,7 @@ import { ic_search, ic_dehaze, ic_close } from 'react-icons-kit/md';
 
 import Logo from '../../assets/static/logo.png';
 import DesktopImg from '../../assets/courses/mobile.png';
+import ProfileImg from '../../assets/static/profilePic.png';
 
 const Layout = () => {
     const dispatch = useDispatch();
@@ -83,18 +84,29 @@ const Layout = () => {
             {/* Left Menu */}
             <div className={open ? "left-menu d-lg-block open-menu" : "left-menu d-lg-block"}>
 
+                {/* My Profile */}
+                {localStorage.getItem("token") ? (
+                    <div className="profile text-center mt-4 d-lg-none">
+                        <div className="profile-img-box rounded-circle mb-2">
+                            <img src={ProfileImg} className="img-fluid" alt="..." />
+                        </div>
+                        <p className="text-capitalize mb-0">moniruzzaman roni</p>
+                        <p className="mb-4">(Learner)</p>
+                    </div>
+                ) : null}
+
                 <div className="links-menu my-3">
                     <div className="title text-lg-center pb-2 mb-2 mt-2 border-bottom">
-                        <h5 className="mb-0">সেকশন</h5>
+                        <h6 className="mb-0">সেকশন</h6>
                     </div>
 
                     {popularCourses.map((course, i) =>
                         <NavLink
+                            key={i}
                             activeClassName="isActive"
-                            to={`/classroom/${course.id}`}
+                            to={`/classroom/courses/${course.id}`}
                             type="button"
                             className="btn shadow-none"
-                            key={i}
                         >
                             {course.name.slice(0, 10)}
                         </NavLink>
@@ -109,8 +121,18 @@ const Layout = () => {
                 {/* My Courses */}
                 {localStorage.getItem("token") ? (
                     <div className="my-courses">
-                        <div className="title text-lg-center mb-2 mb-lg-3 mt-2">
-                            <h5 className="mb-0">আমার কোর্সগুলো {courses.length}</h5>
+
+                        {/* My Profile */}
+                        <div className="profile text-center">
+                            <div className="profile-img-box rounded-circle mb-2">
+                                <img src={ProfileImg} className="img-fluid" alt="..." />
+                            </div>
+                            <p className="text-capitalize mb-0">moniruzzaman roni</p>
+                            <p className="mb-4">(Learner)</p>
+                        </div>
+
+                        <div className="title text-lg-center mt-2">
+                            <h6 className="mb-0">আমার কোর্সগুলো {courses.length}</h6>
                         </div>
 
                         {
@@ -131,7 +153,7 @@ const Layout = () => {
                                             )}
                                             <div className="text-center payment-box">
                                                 <Link
-                                                    to="/"
+                                                    to="/classroom/payment"
                                                     type="button"
                                                     className="btn px-4 shadow-none payment-btn"
                                                 >Payment</Link>
@@ -139,15 +161,14 @@ const Layout = () => {
                                         </div>
                                     ) : null
                                 )
-
                         }
                     </div>
                 ) :
 
                     // Popular Courses
                     <div className="favourite-courses">
-                        <div className="title text-lg-center mb-2 mb-lg-3 mt-2">
-                            <h5 className="mb-0">জনপ্রিয় কোর্সগুলো</h5>
+                        <div className="title text-lg-center mt-2">
+                            <h6 className="mb-0">জনপ্রিয় কোর্সগুলো</h6>
                         </div>
 
                         {popularCourses && popularCourses.map((course, k) =>
@@ -162,14 +183,7 @@ const Layout = () => {
                         )}
                     </div>
                 }
-
-
             </div>
-
-
-
-
-
         </div>
     );
 };
