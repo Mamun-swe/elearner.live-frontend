@@ -1,0 +1,112 @@
+@import "../../App.scss";
+
+.payment {
+    .bar-line {
+        .d-flex {
+            .flex-fill {
+                .line-box {
+                    padding-top: 1px;
+                    padding-bottom: 3px;
+                    background: #dfdfdf;
+                    text-align: center;
+                    border-radius: 3px;
+
+                    p {
+                        font-size: 14px;
+                        font-family: Barlow-Medium;
+                    }
+                }
+
+                .fill-color {
+                    color: #fff;
+                    background: $primary-color;
+                }
+            }
+        }
+    }
+
+    .content-box {
+        margin-top: 20px;
+        border-radius: 5px;
+        border: 1px solid $primary-color;
+        padding: 15px;
+
+        @media (min-width: 992px) {
+            padding: 25px;
+        }
+    }
+
+    // Selected Courses Box
+    .selected-course {
+        h5 {
+            color: #afadad;
+            font-family: Barlow-Bold;
+        }
+
+        p {
+            font-size: 14px;
+            font-family: Barlow-Regular;
+        }
+
+        .table {
+            td {
+                padding-left: 0;
+
+                h6 {
+                    font-family: Barlow-Medium;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    // Payment Box
+    .payment-box {
+        .label {
+            font-size: 15px;
+            color: $primary-color;
+            font-family: Barlow-Bold;
+        }
+
+        .form-control {
+            font-family: Barlow-Medium;
+        }
+
+        .payment-to {
+            margin-top: 30px;
+
+            h6 {
+                font-family: Barlow-Bold;
+            }
+
+            p {
+                margin-bottom: 3px;
+                font-size: 15px;
+                color: $primary-color;
+                font-family: Barlow-Medium;
+            }
+        }
+
+        .accounts {
+            width: 100%;
+            margin-top: 20px;
+
+            p {
+                margin-bottom: 0;
+                font-family: Barlow-Medium;
+            }
+
+            @media (min-width: 576px) {
+                width: 250px;
+                margin-left: auto;
+            }
+        }
+    }
+
+    // Next Btn
+    .next-btn {
+        padding: 5px 20px;
+        font-family: Barlow-Bold;
+        background: $primary-color;
+    }
+}

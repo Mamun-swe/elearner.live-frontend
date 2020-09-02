@@ -211,7 +211,7 @@
                 }
 
                 .course-card {
-                    height: 120px;
+                    min-height: 120px;
                     width: 50%;
                     background: none;
                     padding: 10px;
@@ -235,23 +235,24 @@
                             font-family: secondary-font;
                             color: $primary-color;
                         }
-                    }
-                }
 
-                .payment-box {
-                    position: fixed;
-                    right: 0;
-                    bottom: 0;
-                    width: 300px;
-                    background: #fff;
+                        .btn {
+                            color: #000;
+                            background: #fff;
+                            font-size: 12px;
+                            padding-top: 1px;
+                            padding-bottom: 3px;
+                            padding-left: 12px;
+                            padding-right: 12px;
+                            border: 1px solid #28a7465e;
+                            font-family: Barlow-Medium;
+                            transition: 0.4s all;
+                        }
 
-                    .payment-btn {
-                        color: #fff;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        font-size: 16px;
-                        background: $primary-color;
-                        font-family: Barlow-Medium;
+                        .btn:hover {
+                            color: #000;
+                            background: #28a7469a;
+                        }
                     }
                 }
             }

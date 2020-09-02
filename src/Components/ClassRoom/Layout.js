@@ -142,22 +142,18 @@ const Layout = () => {
                                     courses.length > 0 ? (
                                         <div>
                                             {courses.map((course, k) =>
-                                                <Link to={`/classroom/course/${course.id}`} >
-                                                    <div className="course-card border-0" key={k}>
-                                                        <div className="card-body shadow-sm text-center">
-                                                            <img src={DesktopImg} className="img-fluid" alt="..." />
-                                                            <p className="mb-0">অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
-                                                        </div>
+                                                <div className="course-card border-0" key={k}>
+                                                    <div className="card-body shadow-sm text-center">
+                                                        <img src={DesktopImg} className="img-fluid" alt="..." />
+                                                        <p className="mb-0">অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
+                                                        <Link
+                                                            to={`/classroom/payment/course/${course.id}`}
+                                                            type="button"
+                                                            className="btn btn-sm shadow-none"
+                                                        >View</Link>
                                                     </div>
-                                                </Link>
+                                                </div>
                                             )}
-                                            <div className="text-center payment-box">
-                                                <Link
-                                                    to="/classroom/payment"
-                                                    type="button"
-                                                    className="btn px-4 shadow-none payment-btn"
-                                                >Payment</Link>
-                                            </div>
                                         </div>
                                     ) : null
                                 )
