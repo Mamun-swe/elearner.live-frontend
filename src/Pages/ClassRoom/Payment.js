@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import '../../Components/styles/payment.scss';
 import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { coursesList } from '../../Redux/Actions/coursesAction';
 
 const Payment = () => {
+    const dispatch = useDispatch();
     const [bar1, setBar1] = useState(true)
     const [bar2, setBar2] = useState(false)
     const [bar3, setBar3] = useState(false)
     const { courseId } = useParams()
     // const [courseInfo, setCourseInfo] = useState()
+    const { courses } = useSelector((state => state.courses))
 
     const goBox2 = () => {
         setBar1(false)
@@ -21,9 +25,10 @@ const Payment = () => {
     }
 
     useEffect(() => {
+        dispatch(coursesList());
         // it will find from redux
         console.log(courseId);
-    }, [courseId])
+    }, [courseId, dispatch])
 
 
     return (

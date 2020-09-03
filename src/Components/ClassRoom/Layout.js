@@ -100,7 +100,7 @@ const Layout = () => {
                         <h6 className="mb-0">সেকশন</h6>
                     </div>
 
-                    {popularCourses.map((course, i) =>
+                    {courses.map((course, i) =>
                         <NavLink
                             key={i}
                             activeClassName="isActive"
