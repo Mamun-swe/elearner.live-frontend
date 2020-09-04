@@ -11,7 +11,6 @@ const Loading = () => {
                 <div className="item-4"></div>
                 <div className="item-5"></div>
             </div>
-
         </div>
     );
 };

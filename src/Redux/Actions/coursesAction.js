@@ -3,7 +3,10 @@ import {
     GET_COURSE_SUCCESS,
     GET_COURSE_FAILED,
     COURSE_ADD,
-    COURSE_ADD_FAILED
+    COURSE_ADD_FAILED,
+    // COURSE_FILTER_REQUEST,
+    // COURSE_FILTER_SUCCESS,
+    // COURSE_FILTER_FAILED
 } from '../types';
 
 import axios from 'axios';
@@ -26,6 +29,23 @@ export const coursesList = () => {
         }
     }
 }
+
+// export const filterCourse = (id) => {
+//     return async (dispatch) => {
+//         try {
+//             dispatch({ type: COURSE_FILTER_REQUEST })
+//             dispatch({
+//                 type: COURSE_FILTER_SUCCESS,
+//                 payload: id
+//             })
+//         } catch (error) {
+//             dispatch({
+//                 type: COURSE_FILTER_FAILED,
+//                 payload: error.message
+//             })
+//         }
+//     }
+// }
 
 export const addCourse = (data) => {
     return async (dispatch) => {

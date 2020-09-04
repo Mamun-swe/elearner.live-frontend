@@ -27,25 +27,6 @@
         .desktop-search-container {
             padding: 10px;
 
-            form {
-                position: relative;
-
-                .form-control {
-                    font-size: 15px;
-                    font-family: Barlow-Regular;
-                    background: #dfdfdf85;
-                    border-radius: 5px;
-                    height: 34px;
-                    border: 0;
-                }
-
-                .search-icon {
-                    position: absolute;
-                    top: 5px;
-                    right: 5px;
-                }
-            }
-
             @media (min-width: 992px) {
                 padding: 15px;
             }
@@ -54,25 +35,6 @@
         .mobile-search {
             padding: 10px;
             padding-top: 0;
-
-            form {
-                position: relative;
-
-                .form-control {
-                    font-size: 15px;
-                    font-family: Barlow-Regular;
-                    background: #dfdfdf85;
-                    border-radius: 5px;
-                    height: 34px;
-                    border: 0;
-                }
-
-                .search-icon {
-                    position: absolute;
-                    top: 5px;
-                    right: 5px;
-                }
-            }
         }
 
         .btn-section {

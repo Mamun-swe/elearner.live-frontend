@@ -5,7 +5,9 @@ import { Icon } from 'react-icons-kit';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { coursesList } from '../../Redux/Actions/coursesAction';
-import { ic_search, ic_dehaze, ic_close } from 'react-icons-kit/md';
+import { ic_dehaze, ic_close } from 'react-icons-kit/md';
+
+import SearchComponent from './Search';
 
 import Logo from '../../assets/static/logo.png';
 import DesktopImg from '../../assets/courses/mobile.png';
@@ -43,14 +45,7 @@ const Layout = () => {
 
                     {/* Desktop Search */}
                     <div className="flex-fill d-none d-lg-block px-lg-5 desktop-search-container shadow-sm">
-                        <form>
-                            <input
-                                type="text"
-                                className="form-control shadow-none"
-                                placeholder="আরো খুঁজুন ..."
-                            />
-                            <Icon icon={ic_search} size={25} className="search-icon" style={{ color: '#555' }} />
-                        </form>
+                        <SearchComponent />
                     </div>
                     <div className="ml-auto btn-section">
                         <Link to="/login" type="button" className="btn shadow-none">লগ ইন</Link>
@@ -68,14 +63,7 @@ const Layout = () => {
 
                 {/* Mobile Search */}
                 <div className="mobile-search d-lg-none shadow-sm">
-                    <form>
-                        <input
-                            type="text"
-                            className="form-control shadow-none"
-                            placeholder="আরো খুঁজুন ..."
-                        />
-                        <Icon icon={ic_search} size={25} className="search-icon" style={{ color: '#555' }} />
-                    </form>
+                    <SearchComponent />
                 </div>
 
             </div>
