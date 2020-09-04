@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../Components/styles/auth.scss';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import NavBar from '../../Components/NavBar';
 import Footer from '../../Components/Footer';
+import { useSelector, useDispatch } from 'react-redux';
+import { coursesList } from '../../Redux/Actions/coursesAction';
 
 import LoginImg from '../../assets/static/door_open.png';
 
 const Login = () => {
-    const { register, handleSubmit, errors } = useForm();
+    const dispatch = useDispatch();
     const history = useHistory();
+    const { register, handleSubmit, errors } = useForm();
+    const { courses } = useSelector((state => state.courses))
+
+    useEffect(() => {
+        dispatch(coursesList());
+    }, [dispatch])
 
     const onSubmit = data => {
         console.log(data);
         localStorage.setItem("token", data.email)
-        history.push('/classroom')
+        history.push(`/classroom/courses/${courses[0].id}`)
     }
 
     return (
