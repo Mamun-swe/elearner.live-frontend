@@ -4,10 +4,10 @@ import axios from 'axios';
 import { Icon } from 'react-icons-kit';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { coursesList } from '../../Redux/Actions/coursesAction';
+import { coursesList, cartCoursesList } from '../../Redux/Actions/coursesAction';
 import { ic_dehaze, ic_close } from 'react-icons-kit/md';
-
 import SearchComponent from './Search';
+import { apiURL } from '../../utils/apiURL';
 
 import Logo from '../../assets/static/logo.png';
 import DesktopImg from '../../assets/courses/mobile.png';
@@ -16,19 +16,22 @@ import ProfileImg from '../../assets/static/profilePic.png';
 const Layout = () => {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false)
+    const [sections, setSections] = useState([])
     const [popularCourses, setPopularCourses] = useState([])
-    const { loading, courses } = useSelector((state => state.courses))
+    const { loading, courses, cartCourses } = useSelector((state => state.courses))
 
     useEffect(() => {
-        dispatch(coursesList());
-
-        const fetchCourses = () => {
-            axios.get('https://jsonplaceholder.typicode.com/users')
-                .then(res => {
-                    setPopularCourses(res.data.slice(0, 6))
-                })
+        dispatch(coursesList())
+        dispatch(cartCoursesList())
+        const fetchSections = async () => {
+            try {
+                const result = await axios.get(`${apiURL}sections`)
+                setSections(result.data.sections)
+            } catch (error) {
+                console.log(error);
+            }
         }
-        fetchCourses()
+        fetchSections()
     }, [dispatch])
 
     return (
@@ -88,15 +91,15 @@ const Layout = () => {
                         <h6 className="mb-0">সেকশন</h6>
                     </div>
 
-                    {courses.map((course, i) =>
+                    {sections.length > 0 && sections.map((section, i) =>
                         <NavLink
                             key={i}
                             activeClassName="isActive"
-                            to={`/classroom/courses/${course.id}`}
+                            to={`/classroom/courses/${section.sectionId}/${section.sectionName}`}
                             type="button"
                             className="btn shadow-none"
                         >
-                            {course.name.slice(0, 10)}
+                            {section.sectionName.slice(0, 18)}
                         </NavLink>
                     )}
                 </div>
@@ -120,20 +123,22 @@ const Layout = () => {
                         </div>
 
                         <div className="title text-lg-center mt-2">
-                            <h6 className="mb-0">আমার কোর্সগুলো {courses.length}</h6>
+                            {cartCourses ?
+                                <h6>আমার কোর্সগুলো {cartCourses.length}</h6>
+                                : <h6>আমার কোর্সগুলো 0</h6>}
                         </div>
 
-                        {
+                        {/* {
                             loading ? (
                                 <p>Loading ...</p>
                             ) : (
                                     courses.length > 0 ? (
                                         <div>
-                                            {courses.map((course, k) =>
+                                            {courses.slice(0, 1).map((course, k) =>
                                                 <div className="course-card border-0" key={k}>
                                                     <div className="card-body shadow-sm text-center">
                                                         <img src={DesktopImg} className="img-fluid" alt="..." />
-                                                        <p className="mb-0">অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
+                                                        <p>অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
                                                         <Link
                                                             to={`/classroom/payment/course/${course.id}`}
                                                             type="button"
@@ -145,22 +150,22 @@ const Layout = () => {
                                         </div>
                                     ) : null
                                 )
-                        }
+                        } */}
                     </div>
                 ) :
 
                     // Popular Courses
                     <div className="favourite-courses">
                         <div className="title text-lg-center mt-2">
-                            <h6 className="mb-0">জনপ্রিয় কোর্সগুলো</h6>
+                            <h6>জনপ্রিয় কোর্সগুলো</h6>
                         </div>
 
-                        {popularCourses && popularCourses.map((course, k) =>
+                        {courses && courses.map((course, k) =>
                             <Link to={`/classroom/course/${course.id}`} >
                                 <div className="course-card border-0" key={k}>
                                     <div className="card-body shadow-sm text-center">
                                         <img src={DesktopImg} className="img-fluid" alt="..." />
-                                        <p className="mb-0">অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
+                                        <p>অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
                                     </div>
                                 </div>
                             </Link>

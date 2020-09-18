@@ -13,7 +13,7 @@ const Master = () => {
         <div className="account-master">
             <Layot />
             <div className="main">
-                <Route exact path="/classroom/courses/:section" component={CourseShow} />
+                <Route exact path="/classroom/courses/:section/:sectionName" component={CourseShow} />
                 <Route exact path="/classroom/course/:courseId" component={SingleCourse} />
                 <Route exact path="/classroom/payment/course/:courseId" component={PaymentPage} />
             </div>

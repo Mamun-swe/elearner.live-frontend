@@ -3,65 +3,93 @@ import '../../Components/styles/class-room-layout.scss';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import PageLoading from '../../Components/Loading';
+import { apiURL } from '../../utils/apiURL';
 
-import CourseImg from '../../assets/courses/react.jpg';
+import EmptyImg from '../../assets/static/empty.png';
 
 const CourseShow = () => {
+    let { section, sectionName } = useParams()
     const [courses, setCourses] = useState([])
     const [loading, setLoading] = useState(false)
-
-    let { section } = useParams();
+    const [nullCourses, setNullCOurses] = useState(false)
 
     useEffect(() => {
-        const fetchUser = () => {
-            setLoading(true)
-            axios.get(`https://jsonplaceholder.typicode.com/posts`)
-                .then(res => {
+        const fetchCourses = async () => {
+            try {
+                setLoading(true)
+                const result = await axios.get(`${apiURL}courses/sections/${section}`)
 
-                    setCourses(res.data.slice(0, 15));
+                if (result.status === 200) {
+                    setNullCOurses(false)
+                    setCourses(result.data.items)
                     setLoading(false)
-                })
+                }
+            } catch (error) {
+                if (error.response.status === 404) {
+                    setLoading(false)
+                    setNullCOurses(true)
+                }
+            }
         }
-        fetchUser()
-    }, [section])
+        fetchCourses()
+    }, [section, sectionName])
+
+    const onSlice = data => {
+        if (data) {
+            return data.slice(0, 47) + "..."
+        } else {
+            return null
+        }
+    }
 
     return (
         <div className="courses-show">
-            {loading ? (
-                <PageLoading />
-            ) :
-                <div className="p-3 pb-5" data-aos="fade-zoom">
-                    <div className="title mb-2">
-                        <h4 className="mb-0 ml-2">ওয়েব ডিজাইন</h4>
+            {
+                nullCourses ?
+                    <div className="text-center empty-box" data-aos="fade-zoom">
+                        <img src={EmptyImg} className="img-fluid empty-img" alt="..." />
+                        <h5>Opps !! No course found !</h5>
                     </div>
 
-                    {courses.length > 0 && courses.map((course, i) =>
-                        <Link to={`/classroom/course/${course.id}`} key={i}>
-                            <div className="card">
-                                <div className="box">
-                                    <div className="card-header">
-                                        <img src={CourseImg} className="img-fluid" alt="..." />
-                                    </div>
+                    : loading ? (
+                        <PageLoading />
+                    ) :
+                        <div className="p-3 pb-5" data-aos="fade-zoom">
+                            <div className="title mb-2">
+                                <h4 className="mb-0 ml-2">{sectionName}</h4>
+                            </div>
 
-                                    <div className="card-body">
-                                        <div className="text">
-                                            <p className="text-muted">React দিয়ে ওয়েব ডিজাইন: Project from scratch</p>
-                                            <h6 className="text-muted mb-0">
-                                                <del>$4500</del> <span className="ml-2">$4000</span>
-                                            </h6>
-                                        </div>
-                                        <div className="overlay">
-                                            <p className="mb-0">With abdullah al mamun</p>
-                                            <div className="enroll text-center">
-                                                <p className="mb-0">Enroll Course</p>
+                            {courses.length > 0 && courses.map((course, i) =>
+                                <Link to={`/classroom/course/${course.courseId}`} key={i}>
+                                    <div className="card">
+                                        <div className="box">
+                                            <div className="card-header">
+                                                <img src={course.imageDetails.imageUrl} className="img-fluid" alt="..." />
+                                            </div>
+
+                                            <div className="card-body">
+                                                <div className="text">
+                                                    <p className="text-muted">{onSlice(course.courseName)}</p>
+                                                    <h6 className="text-muted mb-0">
+                                                        <del>Tk. {course.coursePriceInTk}</del>
+                                                        {course.coursePriceInTkWithOffer <= 0 ?
+                                                            <span>FREE</span> :
+                                                            <span className="ml-2">Tk. {course.coursePriceInTkWithOffer}</span>
+                                                        }
+                                                    </h6>
+                                                </div>
+                                                <div className="overlay">
+                                                    <p className="mb-0">With {course.courseInstructorName}</p>
+                                                    <div className="enroll text-center">
+                                                        <p className="mb-0">Enroll Course</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </Link>
-                    )}
-                </div>
+                                </Link>
+                            )}
+                        </div>
             }
         </div >
     );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../Components/styles/class-room-layout.scss';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { Icon } from 'react-icons-kit';
 import { ic_keyboard_backspace } from 'react-icons-kit/md/ic_keyboard_backspace';
 import axios from 'axios';
@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCourse } from '../../Redux/Actions/coursesAction';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { apiURL } from '../../utils/apiURL';
+import ReactHtmlParser from 'react-html-parser';
 import Loader from '../../Components/Loading';
 
 toast.configure({ autoClose: 2000 })
@@ -25,88 +26,70 @@ const SingleCourse = () => {
     const [open4, setOpen4] = useState(false);
     const [open5, setOpen5] = useState(false);
     const [open6, setOpen6] = useState(false);
-    const { success, success_failed } = useSelector((state => state.courses))
-
-    // console.log(success);
+    const [saturdays, setSaturdays] = useState([])
+    const [sundays, setSundays] = useState([])
+    const [mondays, setMondays] = useState([])
+    const [tuesdays, setTuesdays] = useState([])
+    const [wednesdays, setWednesdays] = useState([])
+    const [thursdays, setThursdays] = useState([])
+    const [fridays, setFridays] = useState([])
+    const { add_success } = useSelector((state => state.courses))
 
     useEffect(() => {
-        const fetchCourse = () => {
-            setLoading(true)
-            axios.get(`https://jsonplaceholder.typicode.com/posts/${courseId}`)
-                .then(res => {
-                    setCourse(res.data)
-                    setLoading(false)
-                })
+
+        const fetchSingleCourse = async () => {
+            try {
+                setLoading(true)
+                const result = await axios.get(`${apiURL}courses/${courseId}`)
+                setCourse(result.data)
+                setSaturdays(result.data.courseClassTimeSchedule.saturdays)
+                setSundays(result.data.courseClassTimeSchedule.sundays)
+                setMondays(result.data.courseClassTimeSchedule.mondays)
+                setTuesdays(result.data.courseClassTimeSchedule.tuesdays)
+                setWednesdays(result.data.courseClassTimeSchedule.wednesdays)
+                setThursdays(result.data.courseClassTimeSchedule.thursdays)
+                setFridays(result.data.courseClassTimeSchedule.fridays)
+                setLoading(false)
+            } catch (error) {
+                if (error) console.log(error)
+            }
         }
-        fetchCourse()
+        fetchSingleCourse()
+        // console.log(add_success);
     }, [courseId])
 
     const goBackPrevious = () => {
         history.goBack();
     }
 
-    const fakeUser = {
-        "id": 15,
-        "name": "Mamun",
-        "username": "Bret",
-        "email": "Sincere@april.biz",
-        "address": {
-            "street": "Kulas Light",
-            "suite": "Apt. 556",
-            "city": "Gwenborough",
-            "zipcode": "92998-3874",
-            "geo": {
-                "lat": "-37.3159",
-                "lng": "81.1496"
-            }
-        },
-        "phone": "1-770-736-8031 x56442",
-        "website": "hildegard.org",
-        "company": {
-            "name": "Romaguera-Crona",
-            "catchPhrase": "Multi-layered client-server neural-net",
-            "bs": "harness real-time e-markets"
-        }
+    const submitCourse = (data) => {
+
+        dispatch(addCourse(data))
+
+        
     }
 
+    // const mysuccess = () => {
+    //     toast.success('Successfully added')
+    // }
 
-    const submitCourse = async () => {
-        try {
-            await dispatch(addCourse(fakeUser))
-
-            if (success) {
-                // console.log(success);
-                toast.success('Successfully added')
-            }
-
-            if (success_failed) {
-                // console.log(success_failed);
-                toast.warn('This course already added')
-            }
-        } catch (error) {
-
-        }
-
-    }
+    // const mywarning = () => {
+    //     toast.warn('This course already added')
+    // }
 
 
 
     return (
         <div className="single-course p-3">
-            {/* {
-                success ?
-                    toast.success('Successfully added')
-                    : null}
 
-            {success_failed ?
-                toast.warn('failed to add')
-                : null
+            {/* {add_success === "" ? ""
+                : add_success === false ? <p>already added</p>
+                    : add_success === true ? <p>okkk</p>
+                        : ""
             } */}
 
+
             {loading ? (<Loader />) :
-
-
-
                 <div data-aos="fade-zoom" className="px-lg-5">
                     <div className="title-bar border-bottom pb-2 mb-3">
                         <div className="d-flex">
@@ -120,7 +103,7 @@ const SingleCourse = () => {
                                 </button>
                             </div>
                             <div>
-                                <h5 className="mb-0 mt-1">{course.title}</h5>
+                                <h5 className="mb-0 mt-1">{course.courseName}</h5>
                             </div>
                         </div>
                     </div>
@@ -128,22 +111,26 @@ const SingleCourse = () => {
                     <div className="content">
 
                         <div className="embed-responsive embed-responsive-21by9 mb-4">
-                            <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="..." allowFullScreen></iframe>
+                            <iframe className="embed-responsive-item" src={course.youtubeEmbeddedLink} title="..." allowFullScreen></iframe>
                         </div>
 
                         <div className="d-md-flex p-3 shadow mb-4">
                             <div>
                                 <h5 className="mb-0">
-                                    <del className="text-muted">$5000</del>
-                                    <span className="text-success ml-3">$5000</span>
+                                    <del className="text-muted">Tk. {course.coursePriceInTk}</del>
+                                    <span className="text-success ml-3">Tk. {course.coursePriceInTkWithOffer}</span>
                                 </h5>
-                                <small>*60% for Covid-19</small>
+                                {course.coursePriceInTkWithOffer <= 0 ?
+                                    <p className="mb-0 font-weight-bold free-enroll">*Free Enrollment Now</p>
+                                    : course.offer ?
+                                        <small>*{course.offer.specialOfferReason}</small>
+                                        : null}
                             </div>
                             <div className="ml-auto pt-3 pt-md-0">
                                 <button
                                     type="button"
                                     className="btn shadow-none mt-md-1"
-                                    onClick={submitCourse}
+                                    onClick={() => submitCourse(course)}
                                 >Free Registration</button>
                             </div>
                         </div>
@@ -153,42 +140,39 @@ const SingleCourse = () => {
                             <div className="row">
                                 <div className="col-12 col-sm-6 col-lg-4 mb-3">
                                     <h6>Orientation Class</h6>
-                                    <p className="mb-0">(03.00PM - 04:00PM)</p>
-                                    <p className="mb-0">10 Jun, 2020</p>
+                                    <p className="mb-0">{course.courseOrientationDate}</p>
                                 </div>
                                 <div className="col-12 col-sm-6 col-lg-4 mb-3">
                                     <h6>Course start date</h6>
-                                    <p className="mb-0">10 Jun, 2020</p>
+                                    <p className="mb-0">{course.courseStartingDate}</p>
                                 </div>
                                 <div className="col-12 col-sm-6 col-lg-4 mb-3">
                                     <h6>Course end date</h6>
-                                    <p className="mb-0">10 Jun, 2020</p>
+                                    <p className="mb-0">{course.courseFinishingDate}</p>
                                 </div>
                                 <div className="col-12 col-sm-6 col-lg-4 mb-3">
-                                    <h6>Total number of course</h6>
-                                    <p className="mb-0">15</p>
+                                    <h6>Total number of classes</h6>
+                                    <p className="mb-0">{course.courseNumberOfClasses}</p>
                                 </div>
                                 <div className="col-12 col-sm-6 col-lg-4 mb-3">
-                                    <h6>Each course duration</h6>
-                                    <p className="mb-0">2hrs.</p>
+                                    <h6>Each class duration</h6>
+                                    <p className="mb-0">{course.courseClassDuration}</p>
                                 </div>
 
                                 <div className="col-12 text-sm-right">
-                                    <p className="text-success mb-0">* 30 students already enrollmented on this course</p>
+                                    {course.registeredLearners ?
+                                        <p className="text-success mb-0">* {course.registeredLearners.length} students already enrollmented on this course</p>
+                                        : null}
                                 </div>
                             </div>
                         </div>
 
-
-                        <p>আজ বুধবার মালিবাগে সিআইডির সদর দপ্তরে আয়োজিত সংবাদ সম্মেলনে এসব তথ্য জানান ঢাকা মেট্রোর বিশেষ পুলিশ সুপার সৈয়দা জান্নাত আরা। তিনি বলেন, প্রতারণার শিকার কাফরুলের বাসিন্দা খায়রুল ইসলামের অভিযোগের পরিপ্রেক্ষিতে চারজনকে গ্রেপ্তার করে সিআইডি।
-                        প্রতারণার শিকার খায়রুল জানান, একজনের সঙ্গে তাঁর ফেসবুকে বন্ধুত্ব তৈরি হয়। বন্ধুত্বের একপর্যায়ে তাঁকে উপহার পাঠানোর প্রস্তাব দেওয়া হয়। পরে তাঁর নামে ‘উপহার বাক্স’ পাঠানো হয়। ওই বাক্সে কয়েক মিলিয়ন ডলারের মূল্যবান সামগ্রী আছে বলে ওই খায়রুলকে বলা হয়। খায়রুলকে শুল্ক গুদাম থেকে ‘উপহার’ গ্রহণ করতে বলেন প্রতারকেরা। সহযোগীদের মাধ্যমে একজন প্রতারক নিজেকে শুল্ক কমিশনার পরিচয় দিয়ে শুল্কসহ বিভিন্ন ব্যাংকে ৫৫ হাজার টাকা জমা দিতে চাপ দেন খায়রুলকে। টাকা জমা না দিলে তাঁকে আইনি জটিলতার ভয় দেখায় প্রতারক চক্রটি।
-                        </p>
-
+                        <p>{course.courseBasicDescription}</p>
 
                         {/* FAQ's */}
                         <div className="faqs mb-5">
 
-                            {/* faq 1 */}
+                            {/* faq 1 what we learn in this course */}
                             <div className="card">
                                 <div
                                     className="card-header"
@@ -201,14 +185,12 @@ const SingleCourse = () => {
 
                                 <Collapse in={open1}>
                                     <div className="card-body" id="collapse-1">
-                                        <p>
-                                            আজ বুধবার মালিবাগে সিআইডির সদর দপ্তরে আয়োজিত সংবাদ সম্মেলনে এসব তথ্য জানান ঢাকা মেট্রোর বিশেষ পুলিশ সুপার সৈয়দা জান্নাত আরা। তিনি বলেন, প্রতারণার শিকার কাফরুলের বাসিন্দা খায়রুল ইসলামের অভিযোগের পরিপ্রেক্ষিতে চারজনকে গ্রেপ্তার করে সিআইডি। প্রতারণার শিকার খায়রুল জানান, একজনের সঙ্গে তাঁর ফেসবুকে বন্ধুত্ব তৈরি হয়। বন্ধুত্বের একপর্যায়ে তাঁকে উপহার পাঠানোর প্রস্তাব দেওয়া হয়। পরে তাঁর নামে ‘উপহার বাক্স’ পাঠানো হয়। ওই বাক্সে কয়েক মিলিয়ন ডলারের মূল্যবান সামগ্রী আছে বলে ওই খায়রুলকে বলা হয়। খায়রুলকে শুল্ক গুদাম থেকে ‘উপহার’ গ্রহণ করতে বলেন প্রতারকেরা। সহযোগীদের মাধ্যমে একজন প্রতারক নিজেকে শুল্ক কমিশনার পরিচয় দিয়ে শুল্কসহ বিভিন্ন ব্যাংকে ৫৫ হাজার টাকা জমা দিতে চাপ দেন খায়রুলকে। টাকা জমা না দিলে তাঁকে আইনি জটিলতার ভয় দেখায় প্রতারক চক্রটি।
-                                        </p>
+                                        {ReactHtmlParser(course.courseGoal)}
                                     </div>
                                 </Collapse>
                             </div>
 
-                            {/* faq 2 */}
+                            {/* faq 2 why do this course */}
                             <div className="card">
                                 <div
                                     className="card-header"
@@ -221,14 +203,12 @@ const SingleCourse = () => {
 
                                 <Collapse in={open2}>
                                     <div className="card-body" id="collapse-2">
-                                        <p>
-                                            আজ বুধবার মালিবাগে সিআইডির সদর দপ্তরে আয়োজিত সংবাদ সম্মেলনে এসব তথ্য জানান ঢাকা মেট্রোর বিশেষ পুলিশ সুপার সৈয়দা জান্নাত আরা। তিনি বলেন, প্রতারণার শিকার কাফরুলের বাসিন্দা খায়রুল ইসলামের অভিযোগের পরিপ্রেক্ষিতে চারজনকে গ্রেপ্তার করে সিআইডি। প্রতারণার শিকার খায়রুল জানান, একজনের সঙ্গে তাঁর ফেসবুকে বন্ধুত্ব তৈরি হয়। বন্ধুত্বের একপর্যায়ে তাঁকে উপহার পাঠানোর প্রস্তাব দেওয়া হয়। পরে তাঁর নামে ‘উপহার বাক্স’ পাঠানো হয়। ওই বাক্সে কয়েক মিলিয়ন ডলারের মূল্যবান সামগ্রী আছে বলে ওই খায়রুলকে বলা হয়। খায়রুলকে শুল্ক গুদাম থেকে ‘উপহার’ গ্রহণ করতে বলেন প্রতারকেরা। সহযোগীদের মাধ্যমে একজন প্রতারক নিজেকে শুল্ক কমিশনার পরিচয় দিয়ে শুল্কসহ বিভিন্ন ব্যাংকে ৫৫ হাজার টাকা জমা দিতে চাপ দেন খায়রুলকে। টাকা জমা না দিলে তাঁকে আইনি জটিলতার ভয় দেখায় প্রতারক চক্রটি।
-                                        </p>
+                                        <p>{course.courseWhyDo}</p>
                                     </div>
                                 </Collapse>
                             </div>
 
-                            {/* faq 3 */}
+                            {/* faq 3 Instructor Info */}
                             <div className="card">
                                 <div
                                     className="card-header"
@@ -241,14 +221,16 @@ const SingleCourse = () => {
 
                                 <Collapse in={open3}>
                                     <div className="card-body" id="collapse-3">
-                                        <p>
-                                            আজ বুধবার মালিবাগে সিআইডির সদর দপ্তরে আয়োজিত সংবাদ সম্মেলনে এসব তথ্য জানান ঢাকা মেট্রোর বিশেষ পুলিশ সুপার সৈয়দা জান্নাত আরা। তিনি বলেন, প্রতারণার শিকার কাফরুলের বাসিন্দা খায়রুল ইসলামের অভিযোগের পরিপ্রেক্ষিতে চারজনকে গ্রেপ্তার করে সিআইডি। প্রতারণার শিকার খায়রুল জানান, একজনের সঙ্গে তাঁর ফেসবুকে বন্ধুত্ব তৈরি হয়। বন্ধুত্বের একপর্যায়ে তাঁকে উপহার পাঠানোর প্রস্তাব দেওয়া হয়। পরে তাঁর নামে ‘উপহার বাক্স’ পাঠানো হয়। ওই বাক্সে কয়েক মিলিয়ন ডলারের মূল্যবান সামগ্রী আছে বলে ওই খায়রুলকে বলা হয়। খায়রুলকে শুল্ক গুদাম থেকে ‘উপহার’ গ্রহণ করতে বলেন প্রতারকেরা। সহযোগীদের মাধ্যমে একজন প্রতারক নিজেকে শুল্ক কমিশনার পরিচয় দিয়ে শুল্কসহ বিভিন্ন ব্যাংকে ৫৫ হাজার টাকা জমা দিতে চাপ দেন খায়রুলকে। টাকা জমা না দিলে তাঁকে আইনি জটিলতার ভয় দেখায় প্রতারক চক্রটি।
+                                        <h5 className="mb-0">{course.courseInstructorName}</h5>
+                                        <p className="mb-0">{course.courseInstructorQualification}</p>
+                                        <p>Instructor of
+                                            <span className="ml-2" style={{ color: "#fc5632" }}>(elearners.live)</span>
                                         </p>
                                     </div>
                                 </Collapse>
                             </div>
 
-                            {/* faq 4 */}
+                            {/* faq 4 class Schedule */}
                             <div className="card">
                                 <div
                                     className="card-header"
@@ -261,14 +243,93 @@ const SingleCourse = () => {
 
                                 <Collapse in={open4}>
                                     <div className="card-body" id="collapse-4">
-                                        <p>
-                                            আজ বুধবার মালিবাগে সিআইডির সদর দপ্তরে আয়োজিত সংবাদ সম্মেলনে এসব তথ্য জানান ঢাকা মেট্রোর বিশেষ পুলিশ সুপার সৈয়দা জান্নাত আরা। তিনি বলেন, প্রতারণার শিকার কাফরুলের বাসিন্দা খায়রুল ইসলামের অভিযোগের পরিপ্রেক্ষিতে চারজনকে গ্রেপ্তার করে সিআইডি। প্রতারণার শিকার খায়রুল জানান, একজনের সঙ্গে তাঁর ফেসবুকে বন্ধুত্ব তৈরি হয়। বন্ধুত্বের একপর্যায়ে তাঁকে উপহার পাঠানোর প্রস্তাব দেওয়া হয়। পরে তাঁর নামে ‘উপহার বাক্স’ পাঠানো হয়। ওই বাক্সে কয়েক মিলিয়ন ডলারের মূল্যবান সামগ্রী আছে বলে ওই খায়রুলকে বলা হয়। খায়রুলকে শুল্ক গুদাম থেকে ‘উপহার’ গ্রহণ করতে বলেন প্রতারকেরা। সহযোগীদের মাধ্যমে একজন প্রতারক নিজেকে শুল্ক কমিশনার পরিচয় দিয়ে শুল্কসহ বিভিন্ন ব্যাংকে ৫৫ হাজার টাকা জমা দিতে চাপ দেন খায়রুলকে। টাকা জমা না দিলে তাঁকে আইনি জটিলতার ভয় দেখায় প্রতারক চক্রটি।
-                                        </p>
+                                        <table className="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <td><p>Day</p></td>
+                                                    <td><p>Start Time</p></td>
+                                                    <td><p>End Time</p></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {saturdays &&
+                                                    saturdays.length > 0 &&
+                                                    saturdays.map((day, i) =>
+                                                        <tr key={i}>
+                                                            <td><p>Saturday</p></td>
+                                                            <td><p>{day.startTime}</p></td>
+                                                            <td><p>{day.endTime}</p></td>
+                                                        </tr>
+                                                    )}
+
+                                                {sundays &&
+                                                    sundays.length > 0 &&
+                                                    sundays.map((day, i) =>
+                                                        <tr key={i}>
+                                                            <td><p>Sunday</p></td>
+                                                            <td><p>{day.startTime}</p></td>
+                                                            <td><p>{day.endTime}</p></td>
+                                                        </tr>
+                                                    )}
+
+                                                {mondays &&
+                                                    mondays.length > 0 &&
+                                                    mondays.map((day, i) =>
+                                                        <tr key={i}>
+                                                            <td><p>Monday</p></td>
+                                                            <td><p>{day.startTime}</p></td>
+                                                            <td><p>{day.endTime}</p></td>
+                                                        </tr>
+                                                    )}
+
+                                                {tuesdays &&
+                                                    tuesdays.length > 0 &&
+                                                    tuesdays.map((day, i) =>
+                                                        <tr key={i}>
+                                                            <td><p>Tuesday</p></td>
+                                                            <td><p>{day.startTime}</p></td>
+                                                            <td><p>{day.endTime}</p></td>
+                                                        </tr>
+                                                    )}
+
+                                                {wednesdays &&
+                                                    wednesdays.length > 0 &&
+                                                    wednesdays.map((day, i) =>
+                                                        <tr key={i}>
+                                                            <td><p>Wednesday</p></td>
+                                                            <td><p>{day.startTime}</p></td>
+                                                            <td><p>{day.endTime}</p></td>
+                                                        </tr>
+                                                    )}
+
+                                                {thursdays &&
+                                                    thursdays.length > 0 &&
+                                                    thursdays.map((day, i) =>
+                                                        <tr key={i}>
+                                                            <td><p>Thrusday</p></td>
+                                                            <td><p>{day.startTime}</p></td>
+                                                            <td><p>{day.endTime}</p></td>
+                                                        </tr>
+                                                    )}
+
+                                                {fridays &&
+                                                    fridays.length > 0 &&
+                                                    fridays.map((day, i) =>
+                                                        <tr key={i}>
+                                                            <td><p>Friday</p></td>
+                                                            <td><p>{day.startTime}</p></td>
+                                                            <td><p>{day.endTime}</p></td>
+                                                        </tr>
+                                                    )}
+
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </Collapse>
                             </div>
 
-                            {/* faq 5 */}
+                            {/* faq 5 how to join */}
                             <div className="card">
                                 <div
                                     className="card-header"
@@ -281,14 +342,12 @@ const SingleCourse = () => {
 
                                 <Collapse in={open5}>
                                     <div className="card-body" id="collapse-5">
-                                        <p>
-                                            আজ বুধবার মালিবাগে সিআইডির সদর দপ্তরে আয়োজিত সংবাদ সম্মেলনে এসব তথ্য জানান ঢাকা মেট্রোর বিশেষ পুলিশ সুপার সৈয়দা জান্নাত আরা। তিনি বলেন, প্রতারণার শিকার কাফরুলের বাসিন্দা খায়রুল ইসলামের অভিযোগের পরিপ্রেক্ষিতে চারজনকে গ্রেপ্তার করে সিআইডি। প্রতারণার শিকার খায়রুল জানান, একজনের সঙ্গে তাঁর ফেসবুকে বন্ধুত্ব তৈরি হয়। বন্ধুত্বের একপর্যায়ে তাঁকে উপহার পাঠানোর প্রস্তাব দেওয়া হয়। পরে তাঁর নামে ‘উপহার বাক্স’ পাঠানো হয়। ওই বাক্সে কয়েক মিলিয়ন ডলারের মূল্যবান সামগ্রী আছে বলে ওই খায়রুলকে বলা হয়। খায়রুলকে শুল্ক গুদাম থেকে ‘উপহার’ গ্রহণ করতে বলেন প্রতারকেরা। সহযোগীদের মাধ্যমে একজন প্রতারক নিজেকে শুল্ক কমিশনার পরিচয় দিয়ে শুল্কসহ বিভিন্ন ব্যাংকে ৫৫ হাজার টাকা জমা দিতে চাপ দেন খায়রুলকে। টাকা জমা না দিলে তাঁকে আইনি জটিলতার ভয় দেখায় প্রতারক চক্রটি।
-                                        </p>
+                                        <Link to="/">এখানে ক্লিক করুন</Link>
                                     </div>
                                 </Collapse>
                             </div>
 
-                            {/* faq 6 */}
+                            {/* faq 6 help line */}
                             <div className="card">
                                 <div
                                     className="card-header"
@@ -301,23 +360,12 @@ const SingleCourse = () => {
 
                                 <Collapse in={open6}>
                                     <div className="card-body" id="collapse-6">
-                                        <p>
-                                            আজ বুধবার মালিবাগে সিআইডির সদর দপ্তরে আয়োজিত সংবাদ সম্মেলনে এসব তথ্য জানান ঢাকা মেট্রোর বিশেষ পুলিশ সুপার সৈয়দা জান্নাত আরা। তিনি বলেন, প্রতারণার শিকার কাফরুলের বাসিন্দা খায়রুল ইসলামের অভিযোগের পরিপ্রেক্ষিতে চারজনকে গ্রেপ্তার করে সিআইডি। প্রতারণার শিকার খায়রুল জানান, একজনের সঙ্গে তাঁর ফেসবুকে বন্ধুত্ব তৈরি হয়। বন্ধুত্বের একপর্যায়ে তাঁকে উপহার পাঠানোর প্রস্তাব দেওয়া হয়। পরে তাঁর নামে ‘উপহার বাক্স’ পাঠানো হয়। ওই বাক্সে কয়েক মিলিয়ন ডলারের মূল্যবান সামগ্রী আছে বলে ওই খায়রুলকে বলা হয়। খায়রুলকে শুল্ক গুদাম থেকে ‘উপহার’ গ্রহণ করতে বলেন প্রতারকেরা। সহযোগীদের মাধ্যমে একজন প্রতারক নিজেকে শুল্ক কমিশনার পরিচয় দিয়ে শুল্কসহ বিভিন্ন ব্যাংকে ৫৫ হাজার টাকা জমা দিতে চাপ দেন খায়রুলকে। টাকা জমা না দিলে তাঁকে আইনি জটিলতার ভয় দেখায় প্রতারক চক্রটি।
-                                        </p>
+                                        <Link to="/help-line">এখানে ক্লিক করুন</Link>
                                     </div>
                                 </Collapse>
                             </div>
 
                         </div>
-
-
-
-
-
-
-
-
-
 
                     </div>
                 </div>

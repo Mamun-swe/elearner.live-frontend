@@ -2,27 +2,38 @@ import React, { useEffect } from 'react';
 import '../../Components/styles/auth.scss';
 import { Link, useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from 'react-redux';
+import { sectionList } from '../../Redux/Actions/coursesAction';
+import axios from 'axios';
+import { apiURL } from '../../utils/apiURL';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import NavBar from '../../Components/NavBar';
 import Footer from '../../Components/Footer';
-import { useSelector, useDispatch } from 'react-redux';
-import { coursesList } from '../../Redux/Actions/coursesAction';
-
 import LoginImg from '../../assets/static/door_open.png';
 
+toast.configure({ autoClose: 2000 })
 const Login = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
-    const { courses } = useSelector((state => state.courses))
+    const { sections } = useSelector((state => state.courses))
 
     useEffect(() => {
-        dispatch(coursesList());
+        dispatch(sectionList());
     }, [dispatch])
 
-    const onSubmit = data => {
-        console.log(data);
-        localStorage.setItem("token", data.email)
-        history.push(`/classroom/courses/${courses[0].id}`)
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.post(`${apiURL}login`, data)
+            if (response.status === 200) {
+                localStorage.setItem("token", response.data.token)
+                history.push(`/classroom/courses/${sections[0].sectionId}/${sections[0].sectionName}`)
+            }
+        } catch (error) {
+            if (error) toast.warn('Invalid E-mail or Password')
+        }
     }
 
     return (

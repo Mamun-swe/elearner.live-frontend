@@ -3,7 +3,7 @@ import "../styles/search.scss";
 import { Icon } from 'react-icons-kit';
 import { ic_search, ic_call_made } from 'react-icons-kit/md';
 import axios from 'axios';
-import { apiURL } from '../../utils/api_url';
+import { apiURL } from '../../utils/apiURL';
 import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 

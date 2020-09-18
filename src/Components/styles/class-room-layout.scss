@@ -164,6 +164,10 @@
 
         // Favourite Courses
         .favourite-courses, .my-courses {
+            a:hover {
+                text-decoration: none;
+            }
+
             @media (min-width: 992px) {
                 .title {
                     h6 {
@@ -174,26 +178,25 @@
 
                 .course-card {
                     min-height: 120px;
-                    width: 50%;
+                    width: 100%;
                     background: none;
-                    padding: 10px;
-                    float: left;
+                    margin-bottom: 10px;
+                    border-radius: 0;
 
                     .card-body {
                         width: 100%;
                         height: 100%;
-                        padding: 10px;
                         background: #fff;
-                        border-radius: 6px;
-                        border: 1px solid #fc573236;
+                        border-radius: 0px;
 
                         img {
-                            height: 30px;
+                            height: 80px;
                         }
 
                         p {
-                            margin-top: 5px;
-                            font-size: 13px;
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            font-size: 14px;
                             font-family: secondary-font;
                             color: $primary-color;
                         }
@@ -237,9 +240,22 @@
 
 // Courses Show
 .courses-show {
+    .empty-box {
+        .empty-img {
+            margin-top: 100px;
+            width: 250px;
+        }
+
+        h5 {
+            color: $primary-color;
+            font-family: Barlow-Medium;
+        }
+    }
+
     .title {
         h4 {
             font-family: primary-font;
+            font-family: Barlow-Bold;
             color: $primary-color;
         }
     }
@@ -285,10 +301,12 @@
                     }
 
                     h6 {
-                        font-size: 19px;
+                        font-size: 16px;
                         font-family: secondary-font;
+                        font-family: Barlow-Bold;
 
                         span {
+                            margin-left: 5px;
                             color: $primary-color;
                         }
                     }
@@ -408,6 +426,10 @@
 
         small {
             font-family: Barlow-Regular;
+            color: $primary-color;
+        }
+
+        .free-enroll {
             color: $primary-color;
         }
 

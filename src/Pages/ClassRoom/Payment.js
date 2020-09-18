@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../Components/styles/payment.scss';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { apiURL } from '../../utils/api_url';
+import { apiURL } from '../../utils/apiURL';
 import Loader from '../../Components/Loading';
 
 const Payment = () => {
@@ -12,7 +12,6 @@ const Payment = () => {
     const { courseId } = useParams()
     const [loading, setLoading] = useState(false)
     const [courseInfo, setCourseInfo] = useState({})
-
 
     const goBox2 = () => {
         setBar1(false)

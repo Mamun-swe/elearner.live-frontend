@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { apiURL } from '../../utils/apiURL';
 
 import NavBar from '../../Components/NavBar';
 import Footer from '../../Components/Footer';
@@ -18,8 +19,12 @@ const Index = () => {
 
     useEffect(() => {
         const fetchCourses = async () => {
-            const result = await axios.get('https://jsonplaceholder.typicode.com/users')
-            setCourses(result.data)
+            const result = await axios.get(`${apiURL}sections`)
+            try {
+                setCourses(result.data.sections)
+            } catch (error) {
+                if (error) console.log(error)
+            }
         }
         fetchCourses()
     }, [])
@@ -29,7 +34,7 @@ const Index = () => {
         <div className="home">
             <NavBar />
             <Header />
-            <Courses courses={courses} />
+            <Courses sections={courses} />
             <Blog />
             <WorkShop />
             <ClassNote />

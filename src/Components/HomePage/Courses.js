@@ -3,10 +3,9 @@ import '../styles/courses.scss';
 import Slider from 'react-slick';
 import { Icon } from 'react-icons-kit';
 import { ic_keyboard_arrow_left, ic_keyboard_arrow_right } from 'react-icons-kit/md';
-import mobileImg from '../../assets/courses/mobile.png';
 import { Link } from 'react-router-dom';
 
-const Courses = ({ courses }) => {
+const Courses = ({ sections }) => {
     const customeSlider = React.useRef();
 
     const next = () => {
@@ -42,6 +41,15 @@ const Courses = ({ courses }) => {
         ]
     };
 
+    const onSlice = data => {
+        if (data) {
+            return data.slice(0, 83) + "..."
+        } else {
+            return null
+        }
+    }
+
+
 
     return (
         <div className="courses">
@@ -52,14 +60,14 @@ const Courses = ({ courses }) => {
                     </div>
                     <div className="col-12 slider-column">
                         <Slider ref={customeSlider} {...settings}>
-                            {courses.length > 0 && courses.map((course, i) =>
+                            {sections.length > 0 && sections.map((section, i) =>
                                 <div className="card" key={i}>
                                     <div className="card-body shadow">
-                                        <img src={mobileImg} className="img-fluid" alt="..." />
-                                        <h5>মোবাইল অ্যাপ ডেভেলপমেন্ট</h5>
-                                        <p>বর্তমান ফ্রিল্যান্সিং মার্কেটপ্লেসের সবচেয়ে জনপ্রিয় কাজগুলোর ভিতর একটি। সবচেয়ে সাশ্রয়ীমূল্য Android,ISO,Hybrid ডিজাইন অথবা ডেভেলপমেন্ট কোর্সগুলো করতে </p>
+                                        <img src={section.imageDetails.imageUrl} className="img-fluid" alt="..." />
+                                        <h5>{section.sectionName}</h5>
+                                        <p>{onSlice(section.sectionDetails)}</p>
                                         <div className="text-right">
-                                            <Link to="/" type="button" className="btn btn-sm shadow-none">
+                                            <Link to={`classroom/courses/${section.sectionId}/${section.sectionName}`} type="button" className="btn btn-sm shadow-none">
                                                 এখানে ক্লিক করুন
                                         </Link>
                                         </div>
