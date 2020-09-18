@@ -3,15 +3,18 @@ import '../../Components/styles/payment.scss';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { apiURL } from '../../utils/apiURL';
+import jwt_decode from "jwt-decode";
 import Loader from '../../Components/Loading';
 
 const Payment = () => {
+    const { courseId } = useParams()
     const [bar1, setBar1] = useState(true)
     const [bar2, setBar2] = useState(false)
     const [bar3, setBar3] = useState(false)
-    const { courseId } = useParams()
     const [loading, setLoading] = useState(false)
+    const [learnerId, setLearnerId] = useState()
     const [courseInfo, setCourseInfo] = useState({})
+    const [cost, setCost] = useState(0.0185)
 
     const goBox2 = () => {
         setBar1(false)
@@ -24,20 +27,45 @@ const Payment = () => {
         setBar3(true)
     }
 
+    const onChangePaymentMethod = event => {
+        if (event.target.value === 'bkash') {
+            setCost(0.0185)
+        }
+        if (event.target.value === 'rocket') {
+            setCost(0.018)
+        }
+        if (event.target.value === 'nogod') {
+            setCost(0.018)
+        }
+    }
+
+    const paymentAccounts = (amount, percent) => {
+        let total = parseInt(amount) + parseInt(percent) + 1
+        return total
+    }
+
     useEffect(() => {
+        let token = localStorage.getItem('token')
+        let decoded = jwt_decode(token)
+        setLearnerId(decoded.userId)
+
         const fetchCourseInfo = async () => {
             try {
                 setLoading(true)
-                const response = await axios.get(`${apiURL}users/${courseId}`)
-                setCourseInfo(response.data)
-                setLoading(false)
+                const response = await axios.get(`${apiURL}courses/${courseId}`)
+                if (response.status === 200) {
+                    setCourseInfo(response.data)
+                    setLoading(false)
+                    console.log(response.data)
+                }
             } catch (error) {
-                console.log(error);
+                if (error) console.log(error)
             }
         }
         fetchCourseInfo()
 
     }, [courseId])
+
 
 
     return (
@@ -71,29 +99,29 @@ const Payment = () => {
                             // Selected Course Info
                             <div className="content-box selected-course">
                                 <h5 className="mb-0">Learner Info.</h5>
-                                <p className="mb-4">Learner ID: 12345</p>
+                                <p className="mb-4">Learner ID: {learnerId}</p>
 
                                 <table className="table table-sm table-borderless">
                                     <tbody>
                                         <tr>
                                             <td><h6>Course Name: </h6></td>
-                                            <td><h6>{courseInfo.name}</h6></td>
+                                            <td><h6>{courseInfo.courseName}</h6></td>
                                         </tr>
                                         <tr>
-                                            <td><h6>Section of group: </h6></td>
-                                            <td><h6>Golden A-1</h6></td>
+                                            <td><h6>Course Section: </h6></td>
+                                            <td><h6>{courseInfo.courseSectionName}</h6></td>
                                         </tr>
                                         <tr>
                                             <td><h6>Course duration: </h6></td>
-                                            <td><h6>60 Days</h6></td>
+                                            <td><h6>{courseInfo.courseTotalDurationInDays}</h6></td>
                                         </tr>
                                         <tr>
                                             <td><h6>Course instructor: </h6></td>
-                                            <td><h6 className="text-capitalize">abdullah al mamun</h6></td>
+                                            <td><h6 className="text-capitalize">{courseInfo.courseInstructorName}</h6></td>
                                         </tr>
                                         <tr>
                                             <td><h6>Course cost: </h6></td>
-                                            <td><h6>4000 tk.</h6></td>
+                                            <td><h6>{courseInfo.coursePriceInTkWithOffer} Tk.</h6></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -115,7 +143,10 @@ const Payment = () => {
                                                 {/* Method */}
                                                 <div className="form-group mb-3">
                                                     <p className="label mb-0">By,</p>
-                                                    <select className="form-control shadow-none">
+                                                    <select
+                                                        className="form-control shadow-none"
+                                                        onChange={onChangePaymentMethod}
+                                                    >
                                                         <option value="bkash">Bkash</option>
                                                         <option value="rocket">Rocket</option>
                                                         <option value="nogod">Nogod</option>
@@ -144,20 +175,22 @@ const Payment = () => {
                                                         <div>
                                                             <p className="mb-0">Course fee:</p>
                                                         </div>
-                                                        <div className="ml-auto"><p>4000 tk</p></div>
+                                                        <div className="ml-auto"><p>{courseInfo.coursePriceInTkWithOffer} Tk</p></div>
                                                     </div>
                                                     <div className="d-flex">
                                                         <div>
                                                             <p className="mb-0">Transaction fee:</p>
                                                         </div>
-                                                        <div className="ml-auto"><p>1.8*4000 tk</p></div>
+                                                        <div className="ml-auto"><p>{cost} * {courseInfo.coursePriceInTkWithOffer} Tk</p></div>
                                                     </div>
                                                     <div className="border my-1"></div>
                                                     <div className="d-flex">
                                                         <div>
                                                             <p className="mb-0">Total:</p>
                                                         </div>
-                                                        <div className="ml-auto"><p>4000 tk</p></div>
+                                                        <div className="ml-auto">
+                                                            <p>{paymentAccounts(courseInfo.coursePriceInTkWithOffer, cost * courseInfo.coursePriceInTkWithOffer)} Tk</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

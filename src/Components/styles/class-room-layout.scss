@@ -193,11 +193,17 @@
                             height: 80px;
                         }
 
+                        h6 {
+                            color: #000;
+                            font-family: Barlow-Medium;
+                        }
+
                         p {
                             margin-top: 10px;
                             margin-bottom: 10px;
                             font-size: 14px;
                             font-family: secondary-font;
+                            font-family: Barlow-Medium;
                             color: $primary-color;
                         }
 

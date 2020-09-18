@@ -5,7 +5,7 @@ import { Icon } from 'react-icons-kit';
 import { ic_keyboard_backspace } from 'react-icons-kit/md/ic_keyboard_backspace';
 import axios from 'axios';
 import Collapse from 'react-bootstrap/Collapse';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addCourse } from '../../Redux/Actions/coursesAction';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,10 +33,8 @@ const SingleCourse = () => {
     const [wednesdays, setWednesdays] = useState([])
     const [thursdays, setThursdays] = useState([])
     const [fridays, setFridays] = useState([])
-    const { add_success } = useSelector((state => state.courses))
 
     useEffect(() => {
-
         const fetchSingleCourse = async () => {
             try {
                 setLoading(true)
@@ -55,7 +53,6 @@ const SingleCourse = () => {
             }
         }
         fetchSingleCourse()
-        // console.log(add_success);
     }, [courseId])
 
     const goBackPrevious = () => {
@@ -63,31 +60,21 @@ const SingleCourse = () => {
     }
 
     const submitCourse = (data) => {
-
-        dispatch(addCourse(data))
-
-        
+        if (localStorage.getItem('token')) {
+            const newData = {
+                courseId: data.courseId,
+                courseName: data.courseName,
+                orientationDateTime: data.courseOrientationDate,
+                imageDetails: data.imageDetails
+            }
+            dispatch(addCourse(newData))
+        } else {
+            history.push('/login')
+        }
     }
-
-    // const mysuccess = () => {
-    //     toast.success('Successfully added')
-    // }
-
-    // const mywarning = () => {
-    //     toast.warn('This course already added')
-    // }
-
-
 
     return (
         <div className="single-course p-3">
-
-            {/* {add_success === "" ? ""
-                : add_success === false ? <p>already added</p>
-                    : add_success === true ? <p>okkk</p>
-                        : ""
-            } */}
-
 
             {loading ? (<Loader />) :
                 <div data-aos="fade-zoom" className="px-lg-5">

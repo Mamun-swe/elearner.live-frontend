@@ -17,7 +17,7 @@ const Layout = () => {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false)
     const [sections, setSections] = useState([])
-    const [popularCourses, setPopularCourses] = useState([])
+    // const [popularCourses, setPopularCourses] = useState([])
     const { loading, courses, cartCourses } = useSelector((state => state.courses))
 
     useEffect(() => {
@@ -51,7 +51,10 @@ const Layout = () => {
                         <SearchComponent />
                     </div>
                     <div className="ml-auto btn-section">
-                        <Link to="/login" type="button" className="btn shadow-none">লগ ইন</Link>
+                        {localStorage.getItem('token') ?
+                            <button type="button" className="btn shadow-none">লগ আউট</button>
+                            : <Link to="/login" type="button" className="btn shadow-none">লগ ইন</Link>
+                        }
                     </div>
                     <div className="d-lg-none pr-2 py-2">
                         <button type="button" className="btn shadow-none rounded-circle toggle-btn" onClick={() => setOpen(!open)}>
@@ -122,35 +125,39 @@ const Layout = () => {
                             <p className="mb-4">(Learner)</p>
                         </div>
 
-                        <div className="title text-lg-center mt-2">
+                        <div className="title text-lg-center mt-2 mb-3">
                             {cartCourses ?
-                                <h6>আমার কোর্সগুলো {cartCourses.length}</h6>
-                                : <h6>আমার কোর্সগুলো 0</h6>}
+                                <h6>আমার কোর্স সমূহ ( {cartCourses.length} )</h6>
+                                : <h6>আমার কোর্স সমূহ ( 0 )</h6>}
                         </div>
 
-                        {/* {
-                            loading ? (
+                        {
+                            loading ?
                                 <p>Loading ...</p>
-                            ) : (
-                                    courses.length > 0 ? (
-                                        <div>
-                                            {courses.slice(0, 1).map((course, k) =>
-                                                <div className="course-card border-0" key={k}>
-                                                    <div className="card-body shadow-sm text-center">
-                                                        <img src={DesktopImg} className="img-fluid" alt="..." />
-                                                        <p>অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
-                                                        <Link
-                                                            to={`/classroom/payment/course/${course.id}`}
-                                                            type="button"
-                                                            className="btn btn-sm shadow-none"
-                                                        >View</Link>
-                                                    </div>
+                                : cartCourses ?
+                                    <div>
+                                        {cartCourses.map((course, k) =>
+                                            <div className="course-card border-0" key={k}>
+                                                <div className="card-body shadow-sm text-center">
+                                                    {course.imageDetails ?
+                                                        <img src={course.imageDetails.imageUrl} className="img-fluid" alt="..." />
+                                                        : null}
+                                                    <h6 className="mb-0">{course.courseName}</h6>
+                                                    <p className="my-0">Orientation Date</p>
+                                                    <small>({course.orientationDateTime})</small>
+                                                    <br />
+                                                    <Link
+                                                        to={`/classroom/payment/course/${course.courseId}`}
+                                                        type="button"
+                                                        className="btn btn-sm shadow-none"
+                                                    >View</Link>
                                                 </div>
-                                            )}
-                                        </div>
-                                    ) : null
-                                )
-                        } */}
+                                            </div>
+                                        )}
+                                    </div>
+                                    : null
+
+                        }
                     </div>
                 ) :
 
