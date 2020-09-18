@@ -11,7 +11,8 @@ const Index = () => {
         if (seconds > 0) {
             setTimeout(() => setSeconds(seconds - 1), 1000)
         } else {
-            history.push('/home')
+            // history.push('/home')
+            console.log("okk");
         }
     })
 

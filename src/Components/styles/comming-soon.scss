@@ -20,23 +20,27 @@
         }
 
         @media (max-width: 380px) {
-            font-size: 30px;
+            font-size: 25px;
         }
 
         @media (min-width: 380px) {
-            font-size: 40px;
+            font-size: 32px;
         }
 
         @media (min-width: 576px) {
-            font-size: 60px;
+            font-size: 45px;
         }
 
         @media (min-width: 768px) {
-            font-size: 70px;
+            font-size: 60px;
         }
 
         @media (min-width: 992px) {
-            font-size: 90px;
+            font-size: 80px;
+        }
+
+        @media (min-width: 1450px) {
+            font-size: 95px;
         }
     }
 
