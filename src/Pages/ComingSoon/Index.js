@@ -19,7 +19,7 @@ const Index = () => {
         <div className="coming-soon">
             <div className="flex-center flex-column text-center">
                 <img src={ComingImg} className="img-fluid" alt="..." />
-                <h1>we <span>|</span> coming <span>|</span> soon</h1>
+                <h1>we <span>|</span> are <span>|</span> coming <span>|</span> soon</h1>
                 <h2>wait <span>|</span> {seconds}<span className="second">s</span></h2>
 
                 <a href="https://forms.gle/dJANLFTWoqLTDpjc8"
