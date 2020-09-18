@@ -5,6 +5,8 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import ComingSoonPage from './Pages/ComingSoon/Index';
+
 import HomePage from './Pages/Home/Index';
 import HelpLine from './Pages/HelpLine/Index';
 import PrivacyPolicy from './Pages/PrivacyPolicy/Index';
@@ -32,7 +34,8 @@ function App() {
       <Router>
         <ScrollToTop>
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={ComingSoonPage} />
+            <Route exact path="/home" component={HomePage} />
             <Route exact path="/help-line" component={HelpLine} />
             <Route exact path="/privacy-policy" component={PrivacyPolicy} />
             <Route exact path="/terms-conditions" component={TermsCondition} />

@@ -109,4 +109,48 @@
         font-family: Barlow-Bold;
         background: $primary-color;
     }
+
+    // Classes Information
+    .classes-information {
+        h4 {
+            color: $primary-color;
+            font-family: Barlow-Bold;
+        }
+
+        .card {
+            border: 1px solid $primary-color;
+
+            .card-body {
+                .nav-tabs {
+                    border: 0;
+
+                    .nav-item {
+                        color: #495057;
+                        background-color: #fff;
+                        border: none;
+                        font-family: Barlow-Bold;
+                        text-transform: capitalize;
+                        padding: 4px 20px;
+                        margin-right: 10px;
+                    }
+
+                    .active {
+                        color: #fff;
+                        border-radius: 4px;
+                        background: $primary-color;
+                    }
+                }
+            }
+        }
+
+        .toggle-card {
+            .card-header {
+                cursor: pointer;
+
+                p {
+                    font-family: Barlow-Medium;
+                }
+            }
+        }
+    }
 }

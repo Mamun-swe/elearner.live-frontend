@@ -87,6 +87,18 @@
     }
 
     .contact-form {
+        .static-contact {
+            h5 {
+                color: $primary-color;
+                font-family: Barlow-Medium;
+            }
+
+            a {
+                color: $primary-color;
+                font-family: Barlow-Regular;
+            }
+        }
+
         .form-control {
             font-size: 14px;
             font-family: Barlow-Regular;

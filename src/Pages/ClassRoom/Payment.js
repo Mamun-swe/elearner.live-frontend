@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { apiURL } from '../../utils/apiURL';
 import jwt_decode from "jwt-decode";
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+import Collapse from 'react-bootstrap/Collapse';
 import Loader from '../../Components/Loading';
 
 const Payment = () => {
@@ -15,6 +18,10 @@ const Payment = () => {
     const [learnerId, setLearnerId] = useState()
     const [courseInfo, setCourseInfo] = useState({})
     const [cost, setCost] = useState(0.0185)
+    const [video, setVideo] = useState(false)
+    const [ppt, setPpt] = useState(false)
+
+    const [fakeClass, setFakeClass] = useState([])
 
     const goBox2 = () => {
         setBar1(false)
@@ -58,6 +65,15 @@ const Payment = () => {
                     setLoading(false)
                     console.log(response.data)
                 }
+            } catch (error) {
+                if (error) console.log(error)
+            }
+        }
+
+        const fetchFakeClasses = async () => {
+            try {
+                const result = await axios.get('http://jsonplaceholder.typicode.com/users')
+                setFakeClass(result.data)
             } catch (error) {
                 if (error) console.log(error)
             }
@@ -212,6 +228,228 @@ const Payment = () => {
                     }
                 </div>
             }
+
+
+
+            {/* Class Information Box */}
+            <div className="classes-information py-4">
+                <div className="text-center py-4">
+                    <h4>My Course Details</h4>
+                </div>
+                <div className="card">
+                    <div className="card-body">
+                        <Tabs defaultActiveKey="class1" transition={false}>
+
+                       
+                                <Tab eventKey="class1" title="class 1">
+                                    <div className="pt-3">
+                                        {/* Video Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setVideo(!video)}
+                                                aria-controls="collapse-1"
+                                                aria-expanded={video}
+                                            >
+                                                <p className="mb-0">Video Notes</p>
+                                            </div>
+
+                                            <Collapse in={video}>
+                                                <div className="card-body" id="collapse-1">
+                                                    <a href="#" target="_blank">https://www.elearners.live/videos?videoId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+                                        {/* PPT Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setPpt(!ppt)}
+                                                aria-controls="collapse-1"
+                                                aria-expanded={ppt}
+                                            >
+                                                <p className="mb-0">PPT Notes</p>
+                                            </div>
+
+                                            <Collapse in={ppt}>
+                                                <div className="card-body" id="collapse-1">
+                                                    <a href="#" target="_blank">https://www.elearners.live/ppts?pptId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+
+                                    </div>
+                                </Tab>
+
+                                <Tab eventKey="class2" title="class 2">
+                                    <div className="pt-3">
+                                        {/* Video Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setVideo(!video)}
+                                                aria-controls="collapse-2"
+                                                aria-expanded={video}
+                                            >
+                                                <p className="mb-0">Video Notes</p>
+                                            </div>
+
+                                            <Collapse in={video}>
+                                                <div className="card-body" id="collapse-2">
+                                                    <a href="#" target="_blank">https://www.elearners.live/videos?videoId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+                                        {/* PPT Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setPpt(!ppt)}
+                                                aria-controls="collapse-2"
+                                                aria-expanded={ppt}
+                                            >
+                                                <p className="mb-0">PPT Notes</p>
+                                            </div>
+
+                                            <Collapse in={ppt}>
+                                                <div className="card-body" id="collapse-2">
+                                                    <a href="#" target="_blank">https://www.elearners.live/ppts?pptId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+
+                                    </div>
+                                </Tab>
+
+
+                                <Tab eventKey="class3" title="class 3">
+                                    <div className="pt-3">
+                                        {/* Video Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setVideo(!video)}
+                                                aria-controls="collapse-3"
+                                                aria-expanded={video}
+                                            >
+                                                <p className="mb-0">Video Notes</p>
+                                            </div>
+
+                                            <Collapse in={video}>
+                                                <div className="card-body" id="collapse-1">
+                                                    <a href="#" target="_blank">https://www.elearners.live/videos?videoId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+                                        {/* PPT Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setPpt(!ppt)}
+                                                aria-controls="collapse-3"
+                                                aria-expanded={ppt}
+                                            >
+                                                <p className="mb-0">PPT Notes</p>
+                                            </div>
+
+                                            <Collapse in={ppt}>
+                                                <div className="card-body" id="collapse-3">
+                                                    <a href="#" target="_blank">https://www.elearners.live/ppts?pptId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+
+                                    </div>
+                                </Tab>
+
+                                <Tab eventKey="class4" title="class 4">
+                                    <div className="pt-3">
+                                        {/* Video Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setVideo(!video)}
+                                                aria-controls="collapse-4"
+                                                aria-expanded={video}
+                                            >
+                                                <p className="mb-0">Video Notes</p>
+                                            </div>
+
+                                            <Collapse in={video}>
+                                                <div className="card-body" id="collapse-4">
+                                                    <a href="#" target="_blank">https://www.elearners.live/videos?videoId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+                                        {/* PPT Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setPpt(!ppt)}
+                                                aria-controls="collapse-4"
+                                                aria-expanded={ppt}
+                                            >
+                                                <p className="mb-0">PPT Notes</p>
+                                            </div>
+
+                                            <Collapse in={ppt}>
+                                                <div className="card-body" id="collapse-4">
+                                                    <a href="#" target="_blank">https://www.elearners.live/ppts?pptId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+
+                                    </div>
+                                </Tab>
+
+                                <Tab eventKey="class5" title="class 5">
+                                    <div className="pt-3">
+                                        {/* Video Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setVideo(!video)}
+                                                aria-controls="collapse-5"
+                                                aria-expanded={video}
+                                            >
+                                                <p className="mb-0">Video Notes</p>
+                                            </div>
+
+                                            <Collapse in={video}>
+                                                <div className="card-body" id="collapse-5">
+                                                    <a href="#" target="_blank">https://www.elearners.live/videos?videoId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+                                        {/* PPT Notes */}
+                                        <div className="card toggle-card border-0 shadow-sm rounded-0 mb-3">
+                                            <div
+                                                className="card-header border-0"
+                                                onClick={() => setPpt(!ppt)}
+                                                aria-controls="collapse-5"
+                                                aria-expanded={ppt}
+                                            >
+                                                <p className="mb-0">PPT Notes</p>
+                                            </div>
+
+                                            <Collapse in={ppt}>
+                                                <div className="card-body" id="collapse-5">
+                                                    <a href="#" target="_blank">https://www.elearners.live/ppts?pptId=live5015</a>
+                                                </div>
+                                            </Collapse>
+                                        </div>
+
+                                    </div>
+                                </Tab>
+
+                        </Tabs>
+                    </div>
+                </div>
+            </div>
+
+
+
+
         </div>
     );
 

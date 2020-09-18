@@ -68,6 +68,13 @@ const Index = () => {
             <div className="contact-form py-4 py-lg-5 mt-5">
                 <div className="container">
                     <div className="row">
+                        <div className="col-12 pb-4 static-contact">
+                            <h5>Call Us: +8801988841890</h5>
+                            <a href="mailto:elearner.live@gmail.com">elearner.live@gmail.com</a>
+                            <br />
+                            <a href="mailto:elearner.live@elearners.com">elearner.live@elearners.com</a>
+
+                        </div>
                         <div className="col-12">
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="row">

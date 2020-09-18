@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/class-room-layout.scss';
 import axios from 'axios';
 import { Icon } from 'react-icons-kit';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { coursesList, cartCoursesList } from '../../Redux/Actions/coursesAction';
 import { ic_dehaze, ic_close } from 'react-icons-kit/md';
@@ -10,10 +10,11 @@ import SearchComponent from './Search';
 import { apiURL } from '../../utils/apiURL';
 
 import Logo from '../../assets/static/logo.png';
-import DesktopImg from '../../assets/courses/mobile.png';
+import AndroidImage from '../../assets/courses/mobile.png';
 import ProfileImg from '../../assets/static/profilePic.png';
 
 const Layout = () => {
+    const history = useHistory()
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false)
     const [sections, setSections] = useState([])
@@ -34,6 +35,11 @@ const Layout = () => {
         fetchSections()
     }, [dispatch])
 
+    const doLogout = () => {
+        localStorage.clear()
+        history.push('/')
+    }
+
     return (
         <div className="class-room-layout">
 
@@ -52,7 +58,7 @@ const Layout = () => {
                     </div>
                     <div className="ml-auto btn-section">
                         {localStorage.getItem('token') ?
-                            <button type="button" className="btn shadow-none">লগ আউট</button>
+                            <button type="button" onClick={doLogout} className="btn shadow-none">লগ আউট</button>
                             : <Link to="/login" type="button" className="btn shadow-none">লগ ইন</Link>
                         }
                     </div>
@@ -102,7 +108,7 @@ const Layout = () => {
                             type="button"
                             className="btn shadow-none"
                         >
-                            {section.sectionName.slice(0, 18)}
+                            {section.sectionName}
                         </NavLink>
                     )}
                 </div>
@@ -137,26 +143,29 @@ const Layout = () => {
                                 : cartCourses ?
                                     <div>
                                         {cartCourses.map((course, k) =>
-                                            <div className="course-card border-0" key={k}>
+                                            <div className="course-card my-course border-0" key={k}>
                                                 <div className="card-body shadow-sm text-center">
                                                     {course.imageDetails ?
                                                         <img src={course.imageDetails.imageUrl} className="img-fluid" alt="..." />
                                                         : null}
                                                     <h6 className="mb-0">{course.courseName}</h6>
-                                                    <p className="my-0">Orientation Date</p>
-                                                    <small>({course.orientationDateTime})</small>
-                                                    <br />
+                                                    <div className="orientation-box">
+                                                        <p>Orientation Date</p>
+                                                        <div className="overlay">
+                                                            <p>({course.orientationDateTime})</p>
+                                                        </div>
+                                                    </div>
+
                                                     <Link
                                                         to={`/classroom/payment/course/${course.courseId}`}
                                                         type="button"
                                                         className="btn btn-sm shadow-none"
-                                                    >View</Link>
+                                                    >Enrollment Now</Link>
                                                 </div>
                                             </div>
                                         )}
                                     </div>
                                     : null
-
                         }
                     </div>
                 ) :
@@ -167,16 +176,37 @@ const Layout = () => {
                             <h6>জনপ্রিয় কোর্সগুলো</h6>
                         </div>
 
-                        {courses && courses.map((course, k) =>
-                            <Link to={`/classroom/course/${course.id}`} >
-                                <div className="course-card border-0" key={k}>
-                                    <div className="card-body shadow-sm text-center">
-                                        <img src={DesktopImg} className="img-fluid" alt="..." />
-                                        <p>অ্যান্ড্রয়েড ডেভেলপমেন্ট</p>
+                        {/* {courses && courses.map((course, k) => */}
+
+                        <div className="course-card my-course border-0">
+                            <div className="card-body shadow-sm text-center">
+                                <img src={AndroidImage} className="img-fluid" alt="..." />
+                                <p>Android Development</p>
+                                <p style={{ color: "#555" }}>hello details</p>
+                                <div className="orientation-box">
+                                    <p>With Moniruzzaman Roni</p>
+                                    <div className="overlay">
+                                        <p>4000 Tk.</p>
                                     </div>
                                 </div>
-                            </Link>
-                        )}
+                            </div>
+                        </div>
+
+                        <div className="course-card my-course border-0">
+                            <div className="card-body shadow-sm text-center">
+                                <img src={AndroidImage} className="img-fluid" alt="..." />
+                                <p>Web Development</p>
+                                <p style={{ color: "#555" }}>hello details</p>
+                                <div className="orientation-box">
+                                    <p>With Abdullah Al Mamun</p>
+                                    <div className="overlay">
+                                        <p>4500 Tk.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* )} */}
                     </div>
                 }
             </div>

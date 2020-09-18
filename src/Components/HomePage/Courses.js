@@ -43,7 +43,7 @@ const Courses = ({ sections }) => {
 
     const onSlice = data => {
         if (data) {
-            return data.slice(0, 83) + "..."
+            return data.slice(0, 150) + "..."
         } else {
             return null
         }
