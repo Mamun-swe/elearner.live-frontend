@@ -3,12 +3,41 @@ import '../../Components/styles/auth.scss';
 import { useForm } from "react-hook-form";
 import NavBar from '../../Components/NavBar';
 import Footer from '../../Components/Footer';
+import { useHistory } from 'react-router-dom';
+import axios from "axios";
+import { apiURL } from "../../utils/apiURL";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import RegImg from '../../assets/static/register_img.png';
 
+toast.configure({ autoClose: 2000 })
 const Register = () => {
+    const history = useHistory()
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => console.log(data);
+
+    const onSubmit = async data => {
+        let requestJsonData = {
+            name: data.name,
+            email: data.email,
+            currentAddress: "",
+            presentWorkField: "",
+            phoneNo: data.phone,
+            password: data.password
+
+        }
+
+        try {
+            const response = await axios.post(`${apiURL}sign-up/learner`, requestJsonData)
+            if (response.status === 201) {
+                toast.success('Successfully Account Created')
+                history.push('/login')
+            }
+        } catch (error) {
+            if (error.response.status === 400) toast.warn('Account Already Registered')
+            if (error.response.status === 500) toast.warn('Registration Unsuccessfull')
+        }
+    };
 
 
     return (
