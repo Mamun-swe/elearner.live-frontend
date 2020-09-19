@@ -5,7 +5,7 @@ import ComingImg from '../../assets/coming.png';
 
 const Index = () => {
     const history = useHistory()
-    const [seconds, setSeconds] = useState(60)
+    const [seconds, setSeconds] = useState(180)
 
     useEffect(() => {
         if (seconds > 0) {
