@@ -34,8 +34,8 @@ function App() {
       <Router>
         <ScrollToTop>
           <Switch>
-            <Route exact path="/" component={ComingSoonPage} />
-            <Route exact path="/home" component={HomePage} />
+            {/* <Route exact path="/" component={ComingSoonPage} /> */}
+            <Route exact path="/" component={HomePage} />
             <Route exact path="/help-line" component={HelpLine} />
             <Route exact path="/privacy-policy" component={PrivacyPolicy} />
             <Route exact path="/terms-conditions" component={TermsCondition} />
