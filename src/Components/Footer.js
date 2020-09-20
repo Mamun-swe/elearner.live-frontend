@@ -1,9 +1,9 @@
 import React from 'react';
 import './styles/footer.scss';
-import { Link } from 'react-router-dom';
-import { Icon } from 'react-icons-kit';
-import { socialFacebook, socialYoutube, socialTwitter } from 'react-icons-kit/typicons';
-import { envelope } from 'react-icons-kit/fa/envelope';
+import {Link} from 'react-router-dom';
+import {Icon} from 'react-icons-kit';
+import {socialFacebook, socialTwitter, socialYoutube} from 'react-icons-kit/typicons';
+import {envelope} from 'react-icons-kit/fa/envelope';
 
 import itVillageLogo from '../assets/static/it-village-logo.png';
 
@@ -59,6 +59,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+            <p className="flex-center copyright">All Rights Reserved 2020 © eLearners.live</p>
         </div>
     );
 };

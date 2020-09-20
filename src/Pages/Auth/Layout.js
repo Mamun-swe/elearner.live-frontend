@@ -8,8 +8,8 @@ import ReadingImg from '../../assets/static/girl_reading.png';
 
 
 const Layout = () => {
-    let updateMassageForRegistration = 'This future approximately available on 22-09-2020'
-    let updateMassageForLogin = 'This future approximately available on 22-09-2020'
+    let updateMassageForRegistration = 'This future approximately available on 24-09-2020'
+    let updateMassageForLogin = 'This future approximately available on 24-09-2020'
     return (
         <div>
             <NavBar />

@@ -3,12 +3,12 @@
 .footer {
     @media (max-width: 992px) {
         padding-top: 60px;
-        padding-bottom: 60px;
+      padding-bottom: 10px;
     }
 
     @media (min-width: 992px) {
         padding-top: 100px;
-        padding-bottom: 100px;
+      padding-bottom: 10px;
     }
 
     .container {
@@ -47,5 +47,13 @@
                 }
             }
         }
+
     }
+
+  .copyright {
+    font-size: 15px;
+    color: #5a6268;
+    margin: 20px;
+    font-family: english-font;
+  }
 }
