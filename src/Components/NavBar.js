@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../Components/styles/navbar.scss';
-import { NavLink, Link } from 'react-router-dom';
-import { Icon } from 'react-icons-kit';
-import { ic_dehaze, ic_close } from 'react-icons-kit/md';
+import {Link, NavLink} from 'react-router-dom';
+import {Icon} from 'react-icons-kit';
+import {ic_close, ic_dehaze} from 'react-icons-kit/md';
 
 import Logo from '../assets/static/logo.png';
 
 const NavBar = () => {
+    let updateMassageForNav = 'This future approximately available on 05-10-2020'
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(true);
 
@@ -37,9 +38,15 @@ const NavBar = () => {
                             <div className={isOpen ? "menu-items pt-lg-2 open-menu" : "menu-items pt-lg-2 hide-menu"}>
                                 <ul>
                                     <li><NavLink activeClassName="isActive" to="/">লাইভ কোর্স করব !</NavLink></li>
-                                    <li><NavLink activeClassName="isActive" to="/sell-course">কোর্স কিনব !</NavLink></li>
-                                    <li><NavLink activeClassName="isActive" to="/offers">চলমান অফার</NavLink></li>
-                                    <li><NavLink activeClassName="isActive" to="/blog">ব্লগ</NavLink></li>
+                                    {/*<li><NavLink activeClassName="isActive" to="/sell-course">কোর্স কিনব !</NavLink></li>*/}
+                                    <li><NavLink activeClassName="isActive" to={`/site-updating/${updateMassageForNav}`}
+                                                 key={updateMassageForNav}>কোর্স কিনব !</NavLink></li>
+                                    {/*<li><NavLink activeClassName="isActive" to="/offers">চলমান অফার</NavLink></li>*/}
+                                    <li><NavLink activeClassName="isActive" to={`/site-updating/${updateMassageForNav}`}
+                                                 key={updateMassageForNav}>চলমান অফার</NavLink></li>
+                                    {/*<li><NavLink activeClassName="isActive" to="/blog">ব্লগ</NavLink></li>*/}
+                                    <li><NavLink activeClassName="isActive" to={`/site-updating/${updateMassageForNav}`}
+                                                 key={updateMassageForNav}>ব্লগ</NavLink></li>
                                 </ul>
                             </div>
 

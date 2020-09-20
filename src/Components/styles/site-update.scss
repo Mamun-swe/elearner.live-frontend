@@ -1,0 +1,143 @@
+@import "../../App.scss";
+// Auth Layout
+.site-update-layout {
+  width: 100%;
+  height: 100vh;
+
+  .card {
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #fc573269;
+    border-style: dotted;
+    text-align: center;
+
+    h3 {
+      color: $primary-color;
+      font-family: primary-font;
+    }
+
+    img {
+      width: 250px;
+      margin: auto;
+
+      @media (min-width: 576px) {
+        width: 300px;
+      }
+    }
+
+    .links {
+      width: 100%;
+
+      .btn {
+        color: #fff;
+        font-family: primary-font;
+        background: $primary-color;
+        border-radius: 8px;
+      }
+
+      p {
+        font-size: 14px;
+        font-family: secondary-font;
+      }
+
+      @media (min-width: 576px) {
+        margin: auto;
+        width: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 90vw;
+    }
+
+    @media (min-width: 768px) {
+      width: 730px;
+    }
+
+    @media (min-width: 992px) {
+      width: 800px;
+    }
+  }
+}
+
+.site-update {
+  margin-top: 100px;
+
+  .card {
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #fc573269;
+    border-style: dotted;
+    text-align: center;
+    position: relative;
+    margin: auto;
+
+    .reg-img {
+      position: absolute;
+      top: -30px;
+      left: -70px;
+
+      @media (min-width: 992px) {
+        width: 250px;
+      }
+    }
+
+    h4 {
+      color: $primary-color;
+      font-family: primary-font;
+      margin-bottom: 30px;
+    }
+
+    form {
+      width: 100%;
+
+      small {
+        font-size: 14px;
+        color: $primary-color;
+        font-family: secondary-font;
+      }
+
+      .form-control {
+        font-size: 14px;
+        height: 40px;
+        font-family: Barlow-Regular;
+        border: 1px solid #dfdfdf;
+        border-radius: 6px;
+      }
+
+      .form-control:focus {
+        border: 1px solid $primary-color;
+      }
+
+      .btn {
+        color: #fff;
+        font-family: primary-font;
+        background: $primary-color;
+        border-radius: 6px;
+      }
+
+      a {
+        font-size: 14px;
+        color: $primary-color;
+        font-family: secondary-font;
+      }
+
+      @media (min-width: 576px) {
+        margin: auto;
+        width: 400px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 90vw;
+    }
+
+    @media (min-width: 768px) {
+      width: 730px;
+    }
+
+    @media (min-width: 992px) {
+      width: 800px;
+    }
+  }
+}

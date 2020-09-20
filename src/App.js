@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import "bootstrap/scss/bootstrap.scss";
 import './App.scss';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import ComingSoonPage from './Pages/ComingSoon/Index';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import HomePage from './Pages/Home/Index';
 import HelpLine from './Pages/HelpLine/Index';
@@ -19,6 +17,8 @@ import LoginPage from './Pages/Auth/Login';
 import ResetPage from './Pages/Auth/Reset';
 
 import ClassRoomMaster from './Pages/ClassRoom/Master';
+
+import SideUpdateStatusForVisitor from './Components/UpdateStatusForVisitors'
 
 import FourOFourPage from './Pages/fourOfour/Index';
 import ScrollToTop from './Components/ScrollToTop';
@@ -47,6 +47,8 @@ function App() {
             <Route exact path="/reset" component={ResetPage} />
 
             <Route path="/classroom" component={ClassRoomMaster} />
+
+              <Route path="/site-updating/:updateMassage" component={SideUpdateStatusForVisitor}/>
 
             <Route path="*" component={FourOFourPage} />
           </Switch>

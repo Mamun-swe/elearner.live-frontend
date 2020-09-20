@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../Components/styles/class-room-layout.scss';
-import { useParams, useHistory, Link } from 'react-router-dom';
-import { Icon } from 'react-icons-kit';
-import { ic_keyboard_backspace } from 'react-icons-kit/md/ic_keyboard_backspace';
+import {Link, useHistory, useParams} from 'react-router-dom';
+import {Icon} from 'react-icons-kit';
+import {ic_keyboard_backspace} from 'react-icons-kit/md/ic_keyboard_backspace';
 import axios from 'axios';
 import Collapse from 'react-bootstrap/Collapse';
-import { useDispatch } from 'react-redux';
-import { addCourse } from '../../Redux/Actions/coursesAction';
-import { toast } from 'react-toastify';
+import {useDispatch} from 'react-redux';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { apiURL } from '../../utils/apiURL';
+import {apiURL} from '../../utils/apiURL';
 import ReactHtmlParser from 'react-html-parser';
 import Loader from '../../Components/Loading';
 
@@ -18,6 +17,7 @@ const SingleCourse = () => {
     let { courseId } = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
+    let updateMassageForFreeRegistration = 'This future approximately available on 28-09-2020'
     const [course, setCourse] = useState({});
     const [loading, setLoading] = useState(false);
     const [open1, setOpen1] = useState(false);
@@ -60,17 +60,20 @@ const SingleCourse = () => {
     }
 
     const submitCourse = (data) => {
-        if (localStorage.getItem('token')) {
-            const newData = {
-                courseId: data.courseId,
-                courseName: data.courseName,
-                orientationDateTime: data.courseOrientationDate,
-                imageDetails: data.imageDetails
-            }
-            dispatch(addCourse(newData))
-        } else {
-            history.push('/login')
-        }
+        // if (localStorage.getItem('token')) {
+        //     const newData = {
+        //         courseId: data.courseId,
+        //         courseName: data.courseName,
+        //         orientationDateTime: data.courseOrientationDate,
+        //         imageDetails: data.imageDetails
+        //     }
+        //     dispatch(addCourse(newData))
+        // } else {
+        //     history.push('/login')
+        // }
+
+        //For Site Updating Message
+        history.push('/site-updating/' + updateMassageForFreeRegistration)
     }
 
     return (
