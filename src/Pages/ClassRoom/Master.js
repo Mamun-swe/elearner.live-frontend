@@ -2,7 +2,7 @@ import React from 'react';
 import '../../Components/styles/class-room-layout.scss';
 import { Route } from 'react-router-dom';
 
-import Layot from '../../Components/ClassRoom/Layout';
+import Layout from '../../Components/ClassRoom/Layout';
 import CourseShow from '../ClassRoom/CourseShow';
 import SingleCourse from '../ClassRoom/SingleCourse';
 import PaymentPage from '../ClassRoom/Payment';
@@ -11,7 +11,7 @@ const Master = () => {
 
     return (
         <div className="account-master">
-            <Layot />
+            <Layout />
             <div className="main">
                 <Route exact path="/classroom/courses/:section/:sectionName" component={CourseShow} />
                 <Route exact path="/classroom/course/:courseId" component={SingleCourse} />
