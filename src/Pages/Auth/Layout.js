@@ -22,7 +22,7 @@ const Layout = () => {
                             {/*<Link to="/register" type="button" className="btn btn-block shadow-none mb-3">নতুন ? ফ্রি একাউন্ট খুলুন</Link>*/}
 
                             {/*For site-updating page show*/}
-                            <Link to={`/site-updating/${updateMassageForRegistration}`}
+                            <Link to={`/register`}
                                   key={updateMassageForRegistration} type="button"
                                   className="btn btn-block shadow-none mb-3">নতুন ? ফ্রি একাউন্ট খুলুন</Link>
 
@@ -30,7 +30,7 @@ const Layout = () => {
                             {/*<Link to="/login" type="button" className="btn btn-block shadow-none mb-3">লগইন করুন</Link>*/}
 
                             {/*For site-updating page show*/}
-                            <Link to={`/site-updating/${updateMassageForLogin}`} key={updateMassageForLogin}
+                            <Link to={`/login`} key={updateMassageForLogin}
                                   type="button" className="btn btn-block shadow-none mb-3">লগইন করুন</Link>
                         </div>
                     </div>

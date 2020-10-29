@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {apiURL} from '../../utils/apiURL';
 import ReactHtmlParser from 'react-html-parser';
 import Loader from '../../Components/Loading';
+import {addCourse} from "../../Redux/Actions/coursesAction";
 
 toast.configure({ autoClose: 2000 })
 const SingleCourse = () => {
@@ -60,20 +61,20 @@ const SingleCourse = () => {
     }
 
     const submitCourse = (data) => {
-        // if (localStorage.getItem('token')) {
-        //     const newData = {
-        //         courseId: data.courseId,
-        //         courseName: data.courseName,
-        //         orientationDateTime: data.courseOrientationDate,
-        //         imageDetails: data.imageDetails
-        //     }
-        //     dispatch(addCourse(newData))
-        // } else {
-        //     history.push('/login')
-        // }
+        if (localStorage.getItem('token')) {
+            const newData = {
+                courseId: data.courseId,
+                courseName: data.courseName,
+                orientationDateTime: data.courseOrientationDate,
+                imageDetails: data.imageDetails
+            }
+            dispatch(addCourse(newData))
+        } else {
+            history.push('/login')
+        }
 
         //For Site Updating Message
-        history.push('/site-updating/' + updateMassageForFreeRegistration)
+        // history.push('/site-updating/' + updateMassageForFreeRegistration)
     }
 
     return (

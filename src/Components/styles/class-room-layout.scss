@@ -135,16 +135,61 @@
     // Profile
     .profile {
         .profile-img-box {
-            width: 80px;
-            height: 80px;
-            overflow: hidden;
-            margin: auto;
+          border-top-style: dotted;
+          border-bottom-style: dashed;
+          border-left-style: solid;
+          border-right-style: double;
+          border-top-color: #16DB93;
+          border-bottom-color: #A4036F;
+          border-left-color: #EFEA5A;
+          border-right-color: #FE5E41;
+          width: 100px;
+          height: 100px;
+          overflow: hidden;
+          margin: auto;
+
         }
 
-        p {
-            font-size: 15px;
-            font-family: Barlow-Medium;
-        }
+      p {
+        font-size: 15px;
+        font-family: Barlow-Medium;
+      }
+
+      .user-profile-status {
+        color: green;
+        font-weight: bold;
+      }
+
+      .user-profile-name {
+        font-weight: bold;
+        color: $primary-color;
+      }
+
+      .label {
+        color: $primary-color;
+      }
+
+      .point-progress-bar {
+        text-shadow: 1px 3px 0 #ffffff, 1px 13px 5px #aba8a8;
+        margin: 15px;
+      }
+
+      .achieve-more-point-but {
+
+        margin: 10px;
+      }
+
+      .achieve-more-point-heading {
+
+        color: #FFFFFF;
+        background: #FFFFFF;
+        text-shadow: 1px 3px 0 #ffffff, 1px 10px 5px #d3eaaf;
+        color: #20942f;
+        background: #FFFFFF;
+
+
+      }
+
     }
 
     // Right Menu

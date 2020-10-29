@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import '../Components/styles/navbar.scss';
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink, useHistory} from 'react-router-dom';
 import {Icon} from 'react-icons-kit';
 import {ic_close, ic_dehaze} from 'react-icons-kit/md';
 
 import Logo from '../assets/static/logo.png';
 
 const NavBar = () => {
+    const history = useHistory()
     let updateMassageForNav = 'This future approximately available on 05-10-2020'
     const [isOpen, setIsOpen] = useState(false);
+    const [isUserLogged, setIsUserLogged] = useState(false)
     const [scrolled, setScrolled] = useState(true);
 
     useEffect(() => {
@@ -21,7 +23,10 @@ const NavBar = () => {
             }
         })
     })
-
+    const doLogout = () => {
+        localStorage.clear()
+        history.push('/')
+    }
     return (
         <div className={scrolled ? "nav-bar" : "nav-bar scrolled"}>
             <div className="container">
@@ -30,7 +35,7 @@ const NavBar = () => {
                         <div className="d-flex justify-content-between">
                             <div className="title">
                                 <Link to="/">
-                                    <img src={Logo} className="img-fluid" alt="logo" />
+                                    <img src={Logo} className="img-fluid" alt="logo"/>
                                 </Link>
                             </div>
 
@@ -51,7 +56,11 @@ const NavBar = () => {
                             </div>
 
                             <div className="join d-none d-lg-block">
-                                <Link to="/join" type="button" className="btn shadow px-4">জয়েন করুন</Link>
+                                {localStorage.getItem('token') ?
+                                    <Link onClick={doLogout} type="button" className="btn shadow px-4">লগ আউট</Link>
+                                    : <Link to="/join" type="button" className="btn shadow px-4">জয়েন করুন</Link>
+                                }
+
                             </div>
 
                             <div className="ml-auto d-lg-none">

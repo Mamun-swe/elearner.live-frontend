@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../Components/styles/class-room-layout.scss';
-import { useParams, Link } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
 import PageLoading from '../../Components/Loading';
-import { apiURL } from '../../utils/apiURL';
+import {apiURL} from '../../utils/apiURL';
 
 import EmptyImg from '../../assets/static/empty.png';
 
@@ -11,7 +11,7 @@ const CourseShow = () => {
     let { section, sectionName } = useParams()
     const [courses, setCourses] = useState([])
     const [loading, setLoading] = useState(false)
-    const [nullCourses, setNullCOurses] = useState(false)
+    const [nullCourses, setNullCourses] = useState(false)
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -20,14 +20,14 @@ const CourseShow = () => {
                 const result = await axios.get(`${apiURL}courses/sections/${section}`)
 
                 if (result.status === 200) {
-                    setNullCOurses(false)
+                    setNullCourses(false)
                     setCourses(result.data.items)
                     setLoading(false)
                 }
             } catch (error) {
                 if (error.response.status === 404) {
                     setLoading(false)
-                    setNullCOurses(true)
+                    setNullCourses(true)
                 }
             }
         }

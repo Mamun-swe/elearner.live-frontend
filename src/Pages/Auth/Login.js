@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import '../../Components/styles/auth.scss';
-import { Link, useHistory } from 'react-router-dom';
-import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from 'react-redux';
-import { sectionList } from '../../Redux/Actions/coursesAction';
+import {Link, useHistory} from 'react-router-dom';
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from 'react-redux';
+import {sectionList} from '../../Redux/Actions/coursesAction';
 import axios from 'axios';
-import { apiURL } from '../../utils/apiURL';
-import { toast } from 'react-toastify';
+import {apiURL} from '../../utils/apiURL';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import NavBar from '../../Components/NavBar';
 import Footer from '../../Components/Footer';
 import LoginImg from '../../assets/static/door_open.png';
 
-toast.configure({ autoClose: 2000 })
+toast.configure({autoClose: 2000})
 const Login = () => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -32,7 +32,12 @@ const Login = () => {
                 history.push(`/classroom/courses/${sections[0].sectionId}/${sections[0].sectionName}`)
             }
         } catch (error) {
-            if (error) toast.warn('Invalid E-mail or Password')
+            console.log(error.response.status)
+            if (error.response.status == 401) toast.warn("Please Verify This Email");
+            if (error.response.status == 400) toast.warn("Empty Field Found");
+            if (error.response.status == 403) toast.warn("Unregistered User");
+
+            //S if (error) toast.warn(error.data.token)
         }
     }
 
