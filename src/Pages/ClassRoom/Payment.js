@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../Components/styles/payment.scss';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import axios from 'axios';
-import { apiURL } from '../../utils/apiURL';
-import jwt_decode from "jwt-decode";
+import {apiURL} from '../../utils/apiURL';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Collapse from 'react-bootstrap/Collapse';
@@ -29,9 +28,7 @@ const Payment = () => {
     }
 
     const goBox3 = () => {
-        setBar1(false)
-        setBar2(false)
-        setBar3(true)
+
     }
 
     const onChangePaymentMethod = event => {
@@ -52,9 +49,8 @@ const Payment = () => {
     }
 
     useEffect(() => {
-        let token = localStorage.getItem('token')
-        let decoded = jwt_decode(token)
-        setLearnerId(decoded.userId)
+        let userId = localStorage.getItem('loggedLearnerId')
+        setLearnerId(userId)
 
         const fetchCourseInfo = async () => {
             try {
@@ -70,7 +66,7 @@ const Payment = () => {
             }
         }
 
-        const fetchFakeClasses = async () => {
+        const getMyCourses = async () => {
             try {
                 const result = await axios.get('http://jsonplaceholder.typicode.com/users')
                 setFakeClass(result.data)
@@ -79,7 +75,7 @@ const Payment = () => {
             }
         }
         fetchCourseInfo()
-
+        getMyCourses()
     }, [courseId])
 
 
