@@ -20,17 +20,21 @@ const Payment = () => {
     const [video, setVideo] = useState(false)
     const [ppt, setPpt] = useState(false)
 
-    const [fakeClass, setFakeClass] = useState([])
+    const [paymentStepStatus, setPaymentStepStatus] = useState({})
+
 
     const goBox2 = () => {
         setBar1(false)
         setBar2(true)
+        setBar3(false)
+        //Update Step
+        updateStep()
     }
-
     const goBox3 = () => {
-
+        setBar1(false)
+        setBar2(false)
+        setBar3(true)
     }
-
     const onChangePaymentMethod = event => {
         if (event.target.value === 'bkash') {
             setCost(0.0185)
@@ -51,7 +55,11 @@ const Payment = () => {
     useEffect(() => {
         let userId = localStorage.getItem('loggedLearnerId')
         setLearnerId(userId)
-
+        const header = {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        }
         const fetchCourseInfo = async () => {
             try {
                 setLoading(true)
@@ -59,29 +67,65 @@ const Payment = () => {
                 if (response.status === 200) {
                     setCourseInfo(response.data)
                     setLoading(false)
-                    console.log(response.data)
                 }
             } catch (error) {
                 if (error) console.log(error)
             }
         }
 
-        const getMyCourses = async () => {
+        const getMyPaymentStep = async () => {
             try {
-                const result = await axios.get('http://jsonplaceholder.typicode.com/users')
-                setFakeClass(result.data)
+                setLoading(true)
+                const response = await axios.get(`${apiURL}learners/courses/${courseId}/paymentStepStatus`, header)
+                setPaymentStepStatus(response.data)
+                setLoading(false)
             } catch (error) {
                 if (error) console.log(error)
             }
         }
+
         fetchCourseInfo()
-        getMyCourses()
+        getMyPaymentStep()
+
     }, [courseId])
 
+    const setBoxSelection = () => {
+        console.log('------------------------' + paymentStepStatus.step)
+        if (paymentStepStatus.step === 1) {
+            setBar1(true)
+            setBar2(false)
+            setBar3(false)
+        } else if (paymentStepStatus.step === 2) {
+            setBar1(false)
+            setBar2(true)
+            setBar3(false)
+        } else {
+            setBar1(false)
+            setBar2(false)
+            setBar3(true)
+        }
+    }
+    const updateStep = async () => {
+        try {
+            setLoading(true)
+            const header = {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            }
+            let data = {'HTTP_CONTENT_LANGUAGE': 'en-US'}
 
+            axios.put(`${apiURL}learners/courses/${courseId}/pre-registration/2`, data, header)
+
+            setLoading(false)
+        } catch (error) {
+            if (error) console.log(error)
+        }
+    }
 
     return (
         <div className="payment p-4">
+            <h1>{paymentStepStatus.step}</h1>
             {loading ? <Loader /> :
 
                 <div data-aos="fade-zoom">

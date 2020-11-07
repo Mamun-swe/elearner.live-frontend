@@ -1,29 +1,22 @@
-
 import {
-    SECTION_REQUEST,
-    GET_SECTION_SUCCESS,
-    GET_SECTION_FAILED,
-
-    COURSE_REQUEST,
-    GET_COURSE_SUCCESS,
-    GET_COURSE_FAILED,
-
+    CART_COURSES_FAILED,
     CART_COURSES_REQUEST,
     CART_COURSES_SUCCESS,
-    CART_COURSES_FAILED,
-
     COURSE_ADD,
     COURSE_ADD_FAILED,
-    // COURSE_FILTER_REQUEST,
-    // COURSE_FILTER_SUCCESS,
-    // COURSE_FILTER_FAILED
+    COURSE_REQUEST,
+    GET_COURSE_FAILED,
+    GET_COURSE_SUCCESS,
+    GET_SECTION_FAILED,
+    GET_SECTION_SUCCESS,
+    SECTION_REQUEST,
 } from '../types';
 import axios from 'axios';
-import { apiURL } from '../../utils/apiURL';
-import { toast } from 'react-toastify';
+import {apiURL} from '../../utils/apiURL';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-toast.configure({ autoClose: 2000 })
 
+toast.configure({autoClose: 2000})
 
 
 const initialState = {
@@ -132,7 +125,7 @@ export default function (state = initialState, action) {
                     add_success: false,
                 }
             } else {
-                // Header 
+                // Header
                 const header = {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token")
@@ -140,7 +133,7 @@ export default function (state = initialState, action) {
                 }
                 let data = { 'HTTP_CONTENT_LANGUAGE': 'en-US' }
 
-                axios.put(`${apiURL}learners/courses/${action.payload.courseId}/pre-registration`, data, header)
+                axios.put(`${apiURL}learners/courses/${action.payload.courseId}/pre-registration/1`, data, header)
                     .then(res => {
                         if (res.status === 201) {
                             toast.success('Successfully added')

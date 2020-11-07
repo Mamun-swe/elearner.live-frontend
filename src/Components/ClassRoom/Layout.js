@@ -203,8 +203,7 @@ const Layout = () => {
                                                     <Link
                                                         to={`/classroom/payment/course/${course.courseId}`}
                                                         type="button"
-                                                        className="btn btn-sm shadow-none"
-                                                    >Enrollment Now</Link>
+                                                        className="btn btn-sm shadow-none">Enrollment Now</Link>
                                                 </div>
                                             </div>
                                         )}
