@@ -133,7 +133,7 @@ export default function (state = initialState, action) {
                 }
                 let data = { 'HTTP_CONTENT_LANGUAGE': 'en-US' }
 
-                axios.put(`${apiURL}learners/courses/${action.payload.courseId}/pre-registration/1`, data, header)
+                axios.put(`${apiURL}learners/courses/${action.payload.courseId}/pre-registration`, data, header)
                     .then(res => {
                         if (res.status === 201) {
                             toast.success('Successfully added')

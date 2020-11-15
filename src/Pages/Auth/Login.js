@@ -32,7 +32,7 @@ const Login = () => {
                 history.push(`/classroom/courses/${sections[0].sectionId}/${sections[0].sectionName}`)
             }
         } catch (error) {
-            console.log(error.response.status)
+
             if (error.response.status == 401) toast.warn("Please Verify This Email");
             if (error.response.status == 400) toast.warn("Empty Field Found");
             if (error.response.status == 403) toast.warn("Unregistered User");
