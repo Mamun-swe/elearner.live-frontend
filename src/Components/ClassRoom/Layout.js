@@ -55,6 +55,7 @@ const Layout = () => {
                 console.log(error);
             }
         }
+
         fetchSections()
         fetchLoggedUserInformation()
     }, [dispatch])

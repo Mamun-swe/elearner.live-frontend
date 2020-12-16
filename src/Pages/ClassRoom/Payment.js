@@ -153,6 +153,15 @@ const Payment = () => {
         setTrxNo(event.target.value)
     };
 
+    const onChangePromoKey = event => {
+
+        if(event.target.value.length == 8)
+        {
+            console.log(event.target.value);
+            //TODO : show course price after discount
+        }
+    };
+
 
     return (
         <div className="payment p-4">
@@ -237,7 +246,16 @@ const Payment = () => {
                                                     <option value="nogod">Nogod</option>
                                                 </select>
                                             </div>
-
+                                            {/* Promo Offer Code */}
+                                            <div className="form-group mb-3">
+                                                <p className="label mb-0">Promo key</p>
+                                                <input
+                                                    type="text"
+                                                    name="trxId"
+                                                    onChange={onChangePromoKey}
+                                                    className="form-control shadow-none"
+                                                />
+                                            </div>
 
                                             {/* TrxId */}
                                             <div className="form-group mb-3">
